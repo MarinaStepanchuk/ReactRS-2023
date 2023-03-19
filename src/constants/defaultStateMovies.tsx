@@ -1,6 +1,6 @@
 import { IMovie } from '../interfaces/interfaces';
 
-export const defaultMoviesState: IMovie[] = [
+const defaultMoviesState: IMovie[] = [
   {
     id: 1423589,
     name: 'The Banshees of Inisherin',
@@ -111,3 +111,5 @@ export const defaultMoviesState: IMovie[] = [
     rating: 8.6,
   },
 ];
+
+export default defaultMoviesState;

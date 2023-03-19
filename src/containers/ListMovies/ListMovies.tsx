@@ -1,4 +1,4 @@
-import { IMovie } from '../../interfaces/interfaces';
+import IMovie from '../../interfaces/interfaces';
 import React from 'react';
 import ItemMovie from '../../components/ItemMovie/ItemMovie';
 import classes from './ListMovies.module.scss';
@@ -8,8 +8,8 @@ interface IListMoviesProps {
   movies: IMovie[];
 }
 
-export default class ListMovies extends React.Component<IListMoviesProps, object> {
-  render() {
+class ListMovies extends React.Component<IListMoviesProps, object> {
+  public render(): JSX.Element {
     return (
       <div className={classes.list}>
         {this.props.movies.map((movie) => (
@@ -19,3 +19,5 @@ export default class ListMovies extends React.Component<IListMoviesProps, object
     );
   }
 }
+
+export default ListMovies;

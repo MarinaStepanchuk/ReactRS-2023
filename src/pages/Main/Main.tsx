@@ -3,8 +3,8 @@ import React from 'react';
 import { Content } from '../../constants/common.constants';
 import classes from './Main.module.scss';
 
-export default class Main extends React.Component {
-  render() {
+class Main extends React.Component {
+  public render(): JSX.Element {
     return (
       <main>
         <h2 className={classes.greeting}>{Content.greeting}</h2>
@@ -13,3 +13,5 @@ export default class Main extends React.Component {
     );
   }
 }
+
+export default Main;

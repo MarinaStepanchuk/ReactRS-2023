@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { defaultMoviesState } from '../../constants/defaultStateMovies';
+import defaultMoviesState from '../../constants/defaultStateMovies';
 import ListMovies from '../ListMovies/ListMovies';
-import { IMovie } from '../../interfaces/interfaces';
+import IMovie from '../../interfaces/interfaces';
 import { LocalStorageKeys } from '../../constants/common.constants';
 
 interface IListMoviesProps {
@@ -10,8 +10,10 @@ interface IListMoviesProps {
   text: string;
 }
 
-export default class Movies extends React.Component<object, IListMoviesProps> {
-  constructor(props: object) {
+class Movies extends React.Component<object, IListMoviesProps> {
+  public state;
+
+  constructor(public props: object) {
     super(props);
     this.state = {
       movies: defaultMoviesState,
@@ -20,25 +22,25 @@ export default class Movies extends React.Component<object, IListMoviesProps> {
     this.handleTextChange = this.handleTextChange.bind(this);
   }
 
-  saveText = () => {
+  private saveText(): void {
     localStorage.setItem(LocalStorageKeys.search, `${this.state.text}`);
-  };
+  }
 
-  componentDidMount() {
+  public componentDidMount(): void {
     window.addEventListener('beforeunload', this.saveText);
   }
 
-  componentWillUnmount(): void {
+  public componentWillUnmount(): void {
     window.removeEventListener('beforeunload', this.saveText);
   }
 
-  handleTextChange(text: string) {
+  private handleTextChange(text: string): void {
     this.setState({
       text: text,
     });
   }
 
-  render() {
+  public render(): JSX.Element {
     return (
       <section>
         <SearchBar text={this.state.text} onTextChange={this.handleTextChange} />
@@ -47,3 +49,5 @@ export default class Movies extends React.Component<object, IListMoviesProps> {
     );
   }
 }
+
+export default Movies;

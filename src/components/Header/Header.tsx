@@ -8,21 +8,23 @@ const getRouteTitle = () => {
   return Object.values(Paths).find((item) => item.path === url)?.title || '';
 };
 
-export default class Header extends React.Component<object, { title?: string }> {
-  constructor(props: object) {
+class Header extends React.Component<object, { title?: string }> {
+  public state;
+
+  constructor(public props: object) {
     super(props);
     this.state = {
       title: getRouteTitle(),
     };
   }
 
-  changeTitle(page: string) {
+  private changeTitle(page: string): void {
     this.setState({
       title: page,
     });
   }
 
-  render() {
+  public render(): JSX.Element {
     return (
       <header className={classes.header}>
         <nav>
@@ -56,3 +58,5 @@ export default class Header extends React.Component<object, { title?: string }> 
     );
   }
 }
+
+export default Header;

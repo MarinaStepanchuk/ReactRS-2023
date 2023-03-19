@@ -7,17 +7,17 @@ interface ISearchBarProps {
   onTextChange: (value: string) => void;
 }
 
-export default class SearchBar extends React.Component<ISearchBarProps, object> {
-  constructor(props: ISearchBarProps) {
+class SearchBar extends React.Component<ISearchBarProps, object> {
+  constructor(public props: ISearchBarProps) {
     super(props);
     this.handleTextChange = this.handleTextChange.bind(this);
   }
 
-  handleTextChange(e: React.ChangeEvent<HTMLInputElement>) {
+  private handleTextChange(e: React.ChangeEvent<HTMLInputElement>): void {
     this.props.onTextChange(e.target.value);
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     const text = this.props.text;
 
     return (
@@ -33,3 +33,5 @@ export default class SearchBar extends React.Component<ISearchBarProps, object> 
     );
   }
 }
+
+export default SearchBar;

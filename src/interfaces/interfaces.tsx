@@ -1,4 +1,4 @@
-export interface IMovie {
+interface IMovie {
   id: number;
   name: string;
   countries: { name: string }[];
@@ -6,3 +6,5 @@ export interface IMovie {
   poster: string;
   rating: number;
 }
+
+export default IMovie;

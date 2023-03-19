@@ -1,6 +1,6 @@
 import { Content } from '../../constants/common.constants';
 import React from 'react';
-import { IMovie } from '../../interfaces/interfaces';
+import IMovie from '../../interfaces/interfaces';
 import classes from './ItemMovie.module.scss';
 
 interface IItemMoviesProps {
@@ -9,8 +9,8 @@ interface IItemMoviesProps {
   text: string;
 }
 
-export default class ItemMovie extends React.Component<IItemMoviesProps, object> {
-  render() {
+class ItemMovie extends React.Component<IItemMoviesProps, object> {
+  public render(): JSX.Element | undefined {
     const { name, poster, year, countries, rating } = this.props.movie;
     const text = this.props.text;
 
@@ -46,3 +46,5 @@ export default class ItemMovie extends React.Component<IItemMoviesProps, object>
     );
   }
 }
+
+export default ItemMovie;
