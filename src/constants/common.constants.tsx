@@ -10,6 +10,7 @@ const Buttons = {
 
 const Content = {
   rating: 'Rating: ',
+  greeting: 'Enter the movie you are looking for, search by any characteristics.',
 };
 
 const Pages = {

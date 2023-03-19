@@ -9,10 +9,6 @@ interface IListMoviesProps {
 }
 
 export default class ListMovies extends React.Component<IListMoviesProps, object> {
-  constructor(props: IListMoviesProps) {
-    super(props);
-  }
-
   render() {
     return (
       <div className={classes.list}>

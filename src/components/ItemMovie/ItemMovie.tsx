@@ -10,10 +10,6 @@ interface IItemMoviesProps {
 }
 
 export default class ItemMovie extends React.Component<IItemMoviesProps, object> {
-  constructor(props: IItemMoviesProps) {
-    super(props);
-  }
-
   render() {
     const { name, poster, year, countries, rating } = this.props.movie;
     const text = this.props.text;

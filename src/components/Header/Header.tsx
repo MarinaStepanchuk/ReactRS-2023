@@ -1,6 +1,6 @@
 import { Pages, Paths } from '../../constants/common.constants';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import classes from './Header.module.scss';
 
 export default class Header extends React.Component {
@@ -10,10 +10,24 @@ export default class Header extends React.Component {
         <nav>
           <ul>
             <li>
-              <Link to={Paths.main}>{Pages.main}</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `${classes.activeLink}` : `${classes.link}`
+                }
+                to={Paths.main}
+              >
+                {Pages.main}
+              </NavLink>
             </li>
             <li>
-              <Link to={Paths.about}>{Pages.about}</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `${classes.activeLink}` : `${classes.link}`
+                }
+                to={Paths.about}
+              >
+                {Pages.about}
+              </NavLink>
             </li>
           </ul>
         </nav>

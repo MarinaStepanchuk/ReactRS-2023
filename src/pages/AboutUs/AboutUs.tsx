@@ -3,6 +3,6 @@ import { Pages } from '../../constants/common.constants';
 
 export default class AboutUs extends React.Component {
   render() {
-    return <h1>{Pages.about}</h1>;
+    return <span>{Pages.about}</span>;
   }
 }
