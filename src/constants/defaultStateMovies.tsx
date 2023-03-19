@@ -1,4 +1,4 @@
-import { IMovie } from '../interfaces/interfaces';
+import IMovie from '../interfaces/interfaces';
 
 const defaultMoviesState: IMovie[] = [
   {
