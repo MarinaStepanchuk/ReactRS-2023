@@ -1,17 +1,19 @@
+import { Pages, Paths } from '../../constants/common.constants';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import classes from './Header.module.scss';
 
 export default class Header extends React.Component {
   render() {
     return (
-      <header>
+      <header className={classes.header}>
         <nav>
           <ul>
             <li>
-              <Link to="/">Main</Link>
+              <Link to={Paths.main}>{Pages.main}</Link>
             </li>
             <li>
-              <Link to="/about">About Us</Link>
+              <Link to={Paths.about}>{Pages.about}</Link>
             </li>
           </ul>
         </nav>

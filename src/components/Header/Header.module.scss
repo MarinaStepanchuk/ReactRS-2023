@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+    padding: 0;
+
+    .active {
+      color: rgb(155, 150, 150);
+    }
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: rgb(155, 150, 150);
+    }
+  }
+}

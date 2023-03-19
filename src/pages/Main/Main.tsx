@@ -1,7 +1,14 @@
+import Movies from '../../containers/Movies/Movies';
 import React from 'react';
+import { Pages } from '../../constants/common.constants';
 
 export default class Main extends React.Component {
   render() {
-    return <h1>main</h1>;
+    return (
+      <main>
+        <h1>{Pages.main}</h1>
+        <Movies />
+      </main>
+    );
   }
 }
