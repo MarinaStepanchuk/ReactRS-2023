@@ -8,4 +8,4 @@ start lint to check for errors: npm run lint
 
 start tests: npm run test
 
-bild project: npm run build
+build project: npm run build
