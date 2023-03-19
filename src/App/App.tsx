@@ -12,9 +12,9 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path={Paths.main} element={<Main />} />
-        <Route path={Paths.about} element={<AboutUs />} />
-        <Route path={Paths.error} element={<Error />} />
+        <Route path={Paths.main.path} element={<Main />} />
+        <Route path={Paths.about.path} element={<AboutUs />} />
+        <Route path={Paths.error.path} element={<Error />} />
       </Routes>
     </>
   );
