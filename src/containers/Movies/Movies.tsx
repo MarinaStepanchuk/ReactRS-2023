@@ -34,6 +34,10 @@ class Movies extends React.Component<object, IListMoviesProps> {
     window.removeEventListener('beforeunload', this.saveText);
   }
 
+  componentDidUpdate() {
+    localStorage.setItem(LocalStorageKeys.search, this.state.text);
+  }
+
   private handleTextChange(text: string): void {
     this.setState({
       text: text,
