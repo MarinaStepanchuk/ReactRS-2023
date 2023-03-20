@@ -35,7 +35,7 @@ class Movies extends React.Component<object, IListMoviesProps> {
   }
 
   public componentDidUpdate(): void {
-    localStorage.setItem(LocalStorageKeys.search, this.state.text);
+    this.saveText();
   }
 
   private handleTextChange(text: string): void {
