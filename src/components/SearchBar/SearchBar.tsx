@@ -10,7 +10,7 @@ interface ISearchBarProps {
 class SearchBar extends React.Component<ISearchBarProps, object> {
   constructor(public props: ISearchBarProps) {
     super(props);
-    this.handleTextChange = this.handleTextChange.bind(this);
+    // this.handleTextChange = this.handleTextChange.bind(this);
   }
 
   private handleTextChange(e: React.ChangeEvent<HTMLInputElement>): void {
