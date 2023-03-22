@@ -1,7 +1,7 @@
 import Movies from '../../containers/Movies/Movies';
-import React from 'react';
 import { Content } from '../../constants/common.constants';
 import classes from './Main.module.scss';
+import React from 'react';
 
 class Main extends React.Component {
   public render(): JSX.Element {

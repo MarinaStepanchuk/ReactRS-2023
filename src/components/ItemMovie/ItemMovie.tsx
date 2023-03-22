@@ -9,7 +9,7 @@ interface IItemMoviesProps {
   text: string;
 }
 
-class ItemMovie extends React.Component<IItemMoviesProps, object> {
+class ItemMovie extends React.Component<IItemMoviesProps> {
   public render(): JSX.Element | undefined {
     const { name, poster, year, countries, rating } = this.props.movie;
     const text = this.props.text;

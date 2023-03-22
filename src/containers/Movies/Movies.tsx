@@ -19,12 +19,11 @@ class Movies extends React.Component<object, IListMoviesProps> {
       movies: defaultMoviesState,
       text: localStorage.getItem(LocalStorageKeys.search) || '',
     };
-    this.handleTextChange = this.handleTextChange.bind(this);
   }
 
-  private saveText(): void {
+  private saveText: () => void = () => {
     localStorage.setItem(LocalStorageKeys.search, `${this.state.text}`);
-  }
+  };
 
   public componentDidMount(): void {
     window.addEventListener('beforeunload', this.saveText);
@@ -32,17 +31,14 @@ class Movies extends React.Component<object, IListMoviesProps> {
 
   public componentWillUnmount(): void {
     window.removeEventListener('beforeunload', this.saveText);
-  }
-
-  public componentDidUpdate(): void {
     this.saveText();
   }
 
-  private handleTextChange(text: string): void {
+  private handleTextChange: (text: string) => void = (text: string) => {
     this.setState({
       text: text,
     });
-  }
+  };
 
   public render(): JSX.Element {
     return (

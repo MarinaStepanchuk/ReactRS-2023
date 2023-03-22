@@ -7,26 +7,21 @@ interface ISearchBarProps {
   onTextChange: (value: string) => void;
 }
 
-class SearchBar extends React.Component<ISearchBarProps, object> {
-  constructor(public props: ISearchBarProps) {
-    super(props);
-    this.handleTextChange = this.handleTextChange.bind(this);
-  }
-
-  private handleTextChange(e: React.ChangeEvent<HTMLInputElement>): void {
+class SearchBar extends React.Component<ISearchBarProps> {
+  private handleTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     this.props.onTextChange(e.target.value);
-  }
+  };
 
   public render(): JSX.Element {
-    const text = this.props.text;
-
     return (
       <div className={classes.searchBar}>
         <input
           className={classes.search}
           type="text"
-          value={text}
-          onChange={this.handleTextChange}
+          value={this.props.text}
+          onChange={this.handleTextChange.bind(this)}
         />
         <button className={classes.submit}>{Buttons.search}</button>
       </div>
