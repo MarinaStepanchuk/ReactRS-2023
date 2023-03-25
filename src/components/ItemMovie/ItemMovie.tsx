@@ -1,5 +1,5 @@
-import { Content } from '../../constants/common.constants';
 import React from 'react';
+import { Content } from '../../constants/common.constants';
 import { IMovie } from '../../types/interfaces';
 import classes from './ItemMovie.module.scss';
 

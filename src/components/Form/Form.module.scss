@@ -4,15 +4,22 @@
   align-items: flex-start;
   justify-content: center;
   gap: 10px;
-  width: 400px;
+  width: max-content;
   margin: 0 auto;
   background-color: rgb(221, 211, 208);
   border-radius: 20px;
   padding: 20px 40px;
+  margin-bottom: 20px;
 
   h3 {
     font-size: 24px;
     margin: 0;
+  }
+
+  .dataWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
   }
 
   .formTitle {
@@ -44,14 +51,40 @@
     color: rgb(227, 227, 227);
     font-size: 20px;
     align-self: center;
+    cursor: pointer;
+  }
+
+  .formBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  input:not([type="file"]),
+  textarea,
+  select {
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid rgb(68, 113, 113);
+  }
+
+  select {
+    cursor: pointer;
   }
 
   label {
     min-width: max-content;
+    cursor: pointer;
   }
 
-  input, textarea {
+  input {
     width: 100%;
+  }
+
+  textarea {
+    width: 200px;
   }
 
   .radioContainer {
@@ -64,7 +97,7 @@
   }
 
   .review label {
-    align-self: flex-end;
+    align-self: flex-start;
   }
 
   .personal label {

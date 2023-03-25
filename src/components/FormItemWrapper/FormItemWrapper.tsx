@@ -3,6 +3,7 @@ import classes from './FormItemWrapper.module.scss';
 
 interface IFormItemProps {
   label: string;
+  name: string;
   children: ReactNode;
   errorMessage?: string;
   class?: string;
@@ -10,15 +11,14 @@ interface IFormItemProps {
 
 class FormItemWrapper extends React.Component<IFormItemProps> {
   render(): JSX.Element | undefined {
+    const { label, name, children, errorMessage } = this.props;
     return (
       <div className={`${classes.formItem} ${this.props.class ? this.props.class : ''}`}>
         <div className={classes.inputContainer}>
-          <label>{this.props.label}</label>
-          {this.props.children}
+          <label htmlFor={name}>{label}</label>
+          {children}
         </div>
-        {this.props.errorMessage && (
-          <p className={classes.errorMessage}>{this.props.errorMessage}</p>
-        )}
+        {this.props.errorMessage && <p className={classes.errorMessage}>{errorMessage}</p>}
       </div>
     );
   }

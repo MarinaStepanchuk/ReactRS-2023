@@ -38,9 +38,27 @@ const Content = {
     personalDate: 'I consent to my personal data field',
     country: 'Country of residence: ',
     photo: 'Profile picture: ',
+    cardMovie: 'Movie: ',
+    cardRecommended: 'Recommends for viewing: ',
+    cardDate: 'Viewing date: ',
+    cardReview: 'Review: ',
+    recommendedMovie: 'yes',
+    unrecommendedMovie: 'no',
   },
   formSubmit: 'Send a review',
 };
+
+const InputName = {
+  name: 'name',
+  country: 'country',
+  photo: 'photo',
+  movie: 'movie',
+  date: 'date',
+  review: 'review',
+  personalDate: 'personal',
+};
+
+const ImageFormats = '.jpg,.jpeg,.png';
 
 const Pages = {
   main: 'Main',
@@ -303,4 +321,15 @@ const ErrorMessages = {
 
 const regName = /^([a-zA-Z]{3,})[ ]([a-zA-Z]{3,})(([a-zA-Z]{0,}){0,})/gm;
 
-export { Paths, Buttons, Content, Pages, LocalStorageKeys, Countries, ErrorMessages, regName };
+export {
+  Paths,
+  Buttons,
+  Content,
+  InputName,
+  Pages,
+  LocalStorageKeys,
+  Countries,
+  ErrorMessages,
+  regName,
+  ImageFormats,
+};

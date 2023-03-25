@@ -1,5 +1,5 @@
-import IMovie from '../../types/interfaces';
 import React from 'react';
+import { IMovie } from '../../types/interfaces';
 import ItemMovie from '../../components/ItemMovie/ItemMovie';
 import classes from './ListMovies.module.scss';
 

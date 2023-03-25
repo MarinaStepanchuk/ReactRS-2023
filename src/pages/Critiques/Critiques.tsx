@@ -1,15 +1,19 @@
+import React from 'react';
 import Form from '../../components/Form/Form';
 import { Content, ErrorMessages, regName } from '../../constants/common.constants';
-import React from 'react';
 import ListCritiques from '../../containers/ListCritiques/ListCritiques';
 import { ICritique } from '../../types/interfaces';
 import ErrorsObject from '../../types/types';
+import classes from '../Critiques/Critiques.module.scss';
 
 interface ICritiquesState {
   reviews: Array<ICritique>;
   shouldClear: boolean;
-  errors?: ErrorsObject;
+  errors: ErrorsObject;
+  showMessage: boolean;
 }
+
+const SendMessage = 'Thanks. The review is saved.';
 
 class Critiques extends React.Component<object, ICritiquesState> {
   constructor(prop: object) {
@@ -17,9 +21,8 @@ class Critiques extends React.Component<object, ICritiquesState> {
     this.state = {
       reviews: [],
       shouldClear: false,
-      errors: {
-        name: '',
-      },
+      errors: {},
+      showMessage: false,
     };
   }
 
@@ -34,10 +37,17 @@ class Critiques extends React.Component<object, ICritiquesState> {
       const copyState = this.state.reviews;
       copyState.push(card);
       this.setState({
-        reviews: copyState,
-        shouldClear: true,
-        errors: errorsObject,
+        showMessage: true,
       });
+
+      setTimeout(() => {
+        this.setState({
+          reviews: copyState,
+          shouldClear: true,
+          errors: errorsObject,
+          showMessage: false,
+        });
+      }, 1000);
     } else {
       this.setState({
         shouldClear: false,
@@ -64,7 +74,7 @@ class Critiques extends React.Component<object, ICritiquesState> {
       errors.country = ErrorMessages.emptyLine;
     }
 
-    if (!photo) {
+    if (photo.length === 0) {
       errors.photo = ErrorMessages.missingPhoto;
     }
 
@@ -106,12 +116,13 @@ class Critiques extends React.Component<object, ICritiquesState> {
     return (
       <main>
         <h2>{Content.critiquesTitle}</h2>
+        {this.state.showMessage && <div className={classes.sendMessage}>{SendMessage}</div>}
         <Form
           onSubmit={this.sendReview}
           shouldClear={this.state.shouldClear}
           errors={this.state.errors}
         />
-        <ListCritiques />
+        <ListCritiques critiques={this.state.reviews} />
       </main>
     );
   }

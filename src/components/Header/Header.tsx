@@ -1,5 +1,5 @@
-import { Pages, Paths } from '../../constants/common.constants';
 import React from 'react';
+import { Pages, Paths } from '../../constants/common.constants';
 import { NavLink } from 'react-router-dom';
 import classes from './Header.module.scss';
 
