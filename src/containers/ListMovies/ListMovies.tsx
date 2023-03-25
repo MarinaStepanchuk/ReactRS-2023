@@ -1,4 +1,4 @@
-import IMovie from '../../interfaces/interfaces';
+import IMovie from '../../types/interfaces';
 import React from 'react';
 import ItemMovie from '../../components/ItemMovie/ItemMovie';
 import classes from './ListMovies.module.scss';
