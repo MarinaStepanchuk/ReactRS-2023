@@ -38,13 +38,13 @@ class Critiques extends React.Component<object, ICritiquesState> {
       copyState.push(card);
       this.setState({
         showMessage: true,
+        errors: errorsObject,
       });
 
       setTimeout(() => {
         this.setState({
           reviews: copyState,
           shouldClear: true,
-          errors: errorsObject,
           showMessage: false,
         });
       }, 1000);
