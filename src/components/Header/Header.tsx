@@ -51,6 +51,17 @@ class Header extends React.Component<object, { title?: string }> {
                 {Pages.about}
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `${classes.activeLink}` : `${classes.link}`
+                }
+                to={Paths.critiques.path}
+                onClick={() => this.changeTitle(Paths.critiques.title)}
+              >
+                {Pages.critiques}
+              </NavLink>
+            </li>
           </ul>
         </nav>
         <h1>{this.state.title}</h1>

@@ -2,7 +2,7 @@ import React from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import defaultMoviesState from '../../constants/defaultStateMovies';
 import ListMovies from '../ListMovies/ListMovies';
-import IMovie from '../../interfaces/interfaces';
+import { IMovie } from '../../types/interfaces';
 import { LocalStorageKeys } from '../../constants/common.constants';
 
 interface IListMoviesProps {

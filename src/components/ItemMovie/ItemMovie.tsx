@@ -1,6 +1,6 @@
 import { Content } from '../../constants/common.constants';
 import React from 'react';
-import IMovie from '../../interfaces/interfaces';
+import { IMovie } from '../../types/interfaces';
 import classes from './ItemMovie.module.scss';
 
 interface IItemMoviesProps {

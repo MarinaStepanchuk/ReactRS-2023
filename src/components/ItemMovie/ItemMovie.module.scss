@@ -3,17 +3,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(221, 211, 208);
   box-shadow: 15px 15px 8px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: 0.3s all;
+  border-radius: 10px;
 
   &:hover {
     transform: scale(1.05);
   }
 
   img {
-    width: 100%;
+    width: 90%;
+    padding: 5%;
     height: 300px;
   }
 
