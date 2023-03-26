@@ -18,7 +18,11 @@ class FormItemWrapper extends React.Component<IFormItemProps> {
           <label htmlFor={name}>{label}</label>
           {children}
         </div>
-        {this.props.errorMessage && <p className={classes.errorMessage}>{errorMessage}</p>}
+        {this.props.errorMessage && (
+          <p data-testid="errorMessage" className={classes.errorMessage}>
+            {errorMessage}
+          </p>
+        )}
       </div>
     );
   }

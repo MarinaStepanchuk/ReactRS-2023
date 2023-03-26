@@ -3,7 +3,7 @@ import { Content, Countries, InputName, ImageFormats } from '../../constants/com
 import FormItemWrapper from '../FormItemWrapper/FormItemWrapper';
 import { ICritique } from '../../types/interfaces';
 import ErrorsObject from '../../types/types';
-import classes from '../Form/Form.module.scss';
+import classes from './Form.module.scss';
 
 interface IFormProps {
   onSubmit: (card: ICritique) => void;
@@ -116,7 +116,13 @@ class Form extends React.Component<IFormProps> {
               errorMessage={this.props.errors?.photo}
               name={InputName.photo}
             >
-              <input type="file" ref={this.photoRef} accept={ImageFormats} id={InputName.photo} />
+              <input
+                data-testid="dataInput"
+                type="file"
+                ref={this.photoRef}
+                accept={ImageFormats}
+                id={InputName.photo}
+              />
             </FormItemWrapper>
             <FormItemWrapper
               label={Content.critique.movieLabel}

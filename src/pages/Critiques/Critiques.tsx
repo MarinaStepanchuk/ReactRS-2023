@@ -4,7 +4,7 @@ import { Content, ErrorMessages, regName } from '../../constants/common.constant
 import ListCritiques from '../../containers/ListCritiques/ListCritiques';
 import { ICritique } from '../../types/interfaces';
 import ErrorsObject from '../../types/types';
-import classes from '../Critiques/Critiques.module.scss';
+import classes from './Critiques.module.scss';
 
 interface ICritiquesState {
   reviews: Array<ICritique>;

@@ -1,5 +1,5 @@
-import { Content } from '../../constants/common.constants';
 import React from 'react';
+import { Content } from '../../constants/common.constants';
 import { ICritique } from '../../types/interfaces';
 import classes from './ItemCritique.module.scss';
 
@@ -8,7 +8,7 @@ class ItemCritique extends React.Component<{ critique: ICritique }> {
     const { name, country, photo, date, movie, review, recommended } = this.props.critique;
 
     return (
-      <div className={classes.item}>
+      <div data-testid="itemCritique" className={classes.item}>
         <div className={classes.user}>
           <img src={photo}></img>
           <div className={classes.userInfo}>
