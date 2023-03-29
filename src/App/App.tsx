@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router';
 import Main from '../pages/Main/Main';
@@ -8,20 +7,18 @@ import Header from '../components/Header/Header';
 import Critiques from '../pages/Critiques/Critiques';
 import { Paths } from '../constants/common.constants';
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <Routes>
-          <Route path={Paths.main.path} element={<Main />} />
-          <Route path={Paths.about.path} element={<AboutUs />} />
-          <Route path={Paths.critiques.path} element={<Critiques />} />
-          <Route path={Paths.error.path} element={<Error />} />
-        </Routes>
-      </>
-    );
-  }
-}
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path={Paths.main.path} element={<Main />} />
+        <Route path={Paths.about.path} element={<AboutUs />} />
+        <Route path={Paths.critiques.path} element={<Critiques />} />
+        <Route path={Paths.error.path} element={<Error />} />
+      </Routes>
+    </>
+  );
+};
 
 export default App;

@@ -1,53 +1,30 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import defaultMoviesState from '../../constants/defaultStateMovies';
 import ListMovies from '../ListMovies/ListMovies';
-import { IMovie } from '../../types/interfaces';
 import { LocalStorageKeys } from '../../constants/common.constants';
 
-interface IListMoviesProps {
-  movies: IMovie[];
-  text: string;
-}
+const Movies = (): JSX.Element => {
+  const [movies] = useState(defaultMoviesState);
+  const [text, setText] = useState(localStorage.getItem(LocalStorageKeys.search) || '');
 
-class Movies extends React.Component<object, IListMoviesProps> {
-  public state;
+  const handleTextChange: (text: string) => void = (text: string) => {
+    setText(text);
+  };
 
-  constructor(public props: object) {
-    super(props);
-    this.state = {
-      movies: defaultMoviesState,
-      text: localStorage.getItem(LocalStorageKeys.search) || '',
+  useEffect(() => {
+    localStorage.setItem(LocalStorageKeys.search, `${text}`);
+    return () => {
+      localStorage.setItem(LocalStorageKeys.search, `${text}`);
     };
-  }
+  }, [text]);
 
-  private saveText: () => void = () => {
-    localStorage.setItem(LocalStorageKeys.search, `${this.state.text}`);
-  };
-
-  public componentDidMount(): void {
-    window.addEventListener('beforeunload', this.saveText);
-  }
-
-  public componentWillUnmount(): void {
-    window.removeEventListener('beforeunload', this.saveText);
-    this.saveText();
-  }
-
-  private handleTextChange: (text: string) => void = (text: string) => {
-    this.setState({
-      text: text,
-    });
-  };
-
-  public render(): JSX.Element {
-    return (
-      <section>
-        <SearchBar text={this.state.text} onTextChange={this.handleTextChange} />
-        <ListMovies text={this.state.text} movies={this.state.movies} />
-      </section>
-    );
-  }
-}
+  return (
+    <section>
+      <SearchBar text={text} onTextChange={handleTextChange} />
+      <ListMovies text={text} movies={movies} />
+    </section>
+  );
+};
 
 export default Movies;
