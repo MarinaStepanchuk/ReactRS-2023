@@ -61,9 +61,7 @@
     align-items: flex-start;
   }
 
-  input:not([type="file"]),
-  textarea,
-  select {
+  .customInput {
     border-radius: 5px;
     padding: 5px 10px;
     outline: none;

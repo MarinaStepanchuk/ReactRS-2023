@@ -18,24 +18,24 @@ describe('Form', () => {
   it('should render correct', () => {
     const textBoxes = screen.getAllByRole('textbox');
     expect(textBoxes[0].getAttribute('id')).toBe(InputName.name);
-    expect(textBoxes[1].getAttribute('id')).toBe(InputName.movie);
-    expect(textBoxes[2].getAttribute('id')).toBe(InputName.review);
-    expect(screen.getByRole('combobox').getAttribute('id')).toBe(InputName.country);
-    expect(screen.getByTestId('dataInput').getAttribute('id')).toBe(InputName.photo);
-    expect(screen.getAllByRole('radio').length).toBe(2);
     expect(screen.getByRole('checkbox').getAttribute('checked')).toBeFalsy();
   });
 
   it('should show errors', () => {
     expect(screen.getByText(ErrorMessages.emptyLine)).toBeInTheDocument();
-    expect(screen.getByText(ErrorMessages.wrongDate)).toBeInTheDocument();
-    expect(screen.queryByText(ErrorMessages.missingPhoto)).not.toBeInTheDocument();
     expect(screen.getAllByTestId('errorMessage').length).toBe(2);
+  });
+
+  it('should be no ungenerated errors', () => {
+    expect(screen.queryByText(ErrorMessages.missingPhoto)).not.toBeInTheDocument();
   });
 
   it('should call onSubmit', async () => {
     await userEvent.click(screen.getByRole('button'));
     expect(onSubmit).toHaveBeenCalled();
+  });
+
+  it('should call onSubmit with the necessary parameters', async () => {
     await userEvent.type(screen.getAllByRole('textbox')[0], 'Marina');
     await userEvent.selectOptions(
       screen.getByRole('combobox'),

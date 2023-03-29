@@ -62,7 +62,7 @@ class Critiques extends React.Component<object, ICritiquesState> {
     const errors: ErrorsObject = {};
     let isValid = false;
 
-    if (name.length === 0) {
+    if (!name.length) {
       errors.name = ErrorMessages.emptyLine;
     }
 
@@ -74,11 +74,11 @@ class Critiques extends React.Component<object, ICritiquesState> {
       errors.country = ErrorMessages.emptyLine;
     }
 
-    if (photo.length === 0) {
+    if (!photo.length) {
       errors.photo = ErrorMessages.missingPhoto;
     }
 
-    if (movie.length === 0) {
+    if (!movie.length) {
       errors.movie = ErrorMessages.emptyLine;
     }
 
@@ -86,11 +86,11 @@ class Critiques extends React.Component<object, ICritiquesState> {
       errors.date = ErrorMessages.wrongDate;
     }
 
-    if (date.length === 0) {
+    if (!date.length) {
       errors.date = ErrorMessages.emptyLine;
     }
 
-    if (review.length === 0) {
+    if (!review.length) {
       errors.review = ErrorMessages.emptyLine;
     }
 
@@ -102,7 +102,7 @@ class Critiques extends React.Component<object, ICritiquesState> {
       errors.personal = ErrorMessages.emptyLine;
     }
 
-    if (Object.keys(errors).length === 0) {
+    if (!Object.keys(errors).length) {
       isValid = true;
     }
 

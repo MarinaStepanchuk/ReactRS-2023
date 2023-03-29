@@ -12,6 +12,7 @@ interface IFormItemProps {
 class FormItemWrapper extends React.Component<IFormItemProps> {
   render(): JSX.Element | undefined {
     const { label, name, children, errorMessage } = this.props;
+
     return (
       <div className={`${classes.formItem} ${this.props.class ? this.props.class : ''}`}>
         <div className={classes.inputContainer}>

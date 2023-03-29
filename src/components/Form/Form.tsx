@@ -63,6 +63,10 @@ class Form extends React.Component<IFormProps> {
     this.props.onSubmit(card);
   };
 
+  private cancelDefaultBehavior: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
+    event.preventDefault();
+  };
+
   private extractStringValue(
     ref:
       | React.RefObject<HTMLInputElement>
@@ -84,11 +88,7 @@ class Form extends React.Component<IFormProps> {
 
   public render(): JSX.Element | undefined {
     return (
-      <form
-        className={classes.critiqueForm}
-        onSubmit={(event) => event.preventDefault()}
-        ref={this.form}
-      >
+      <form className={classes.critiqueForm} onSubmit={this.cancelDefaultBehavior} ref={this.form}>
         <h3 className={classes.formTitle}>{Content.formTitle}</h3>
         <div className={classes.dataWrapper}>
           <div className={classes.formBlock}>
@@ -97,14 +97,24 @@ class Form extends React.Component<IFormProps> {
               errorMessage={this.props.errors?.name}
               name={InputName.name}
             >
-              <input type="text" ref={this.nameRef} id={InputName.name} />
+              <input
+                className={classes.customInput}
+                type="text"
+                ref={this.nameRef}
+                id={InputName.name}
+              />
             </FormItemWrapper>
             <FormItemWrapper
               label={Content.critique.country}
               errorMessage={this.props.errors?.country}
               name={InputName.country}
             >
-              <select ref={this.countryRef} defaultValue="default" id={InputName.country}>
+              <select
+                className={classes.customInput}
+                ref={this.countryRef}
+                defaultValue="default"
+                id={InputName.country}
+              >
                 <option value="default" disabled></option>
                 {Countries.map((country, index) => (
                   <option key={index}>{country}</option>
@@ -129,14 +139,24 @@ class Form extends React.Component<IFormProps> {
               errorMessage={this.props.errors?.movie}
               name={InputName.movie}
             >
-              <input type="text" ref={this.movieRef} id={InputName.movie} />
+              <input
+                className={classes.customInput}
+                type="text"
+                ref={this.movieRef}
+                id={InputName.movie}
+              />
             </FormItemWrapper>
             <FormItemWrapper
               label={Content.critique.dateLabel}
               errorMessage={this.props.errors?.date}
               name={InputName.date}
             >
-              <input type="date" ref={this.dateRef} id={InputName.date} />
+              <input
+                className={classes.customInput}
+                type="date"
+                ref={this.dateRef}
+                id={InputName.date}
+              />
             </FormItemWrapper>
           </div>
           <div className={classes.formBlock}>
@@ -146,7 +166,13 @@ class Form extends React.Component<IFormProps> {
               class={classes.review}
               name={InputName.review}
             >
-              <textarea cols={150} rows={7} ref={this.reviewRef} id={InputName.review}></textarea>
+              <textarea
+                cols={150}
+                rows={7}
+                ref={this.reviewRef}
+                id={InputName.review}
+                className={classes.customInput}
+              ></textarea>
             </FormItemWrapper>
           </div>
         </div>
