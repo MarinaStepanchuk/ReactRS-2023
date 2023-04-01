@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import classes from './FormItemWrapper.module.scss';
 
 interface IFormItemProps {
@@ -9,24 +9,22 @@ interface IFormItemProps {
   class?: string;
 }
 
-class FormItemWrapper extends React.Component<IFormItemProps> {
-  render(): JSX.Element | undefined {
-    const { label, name, children, errorMessage } = this.props;
+const FormItemWrapper = (props: IFormItemProps) => {
+  const { label, name, children, errorMessage } = props;
 
-    return (
-      <div className={`${classes.formItem} ${this.props.class ? this.props.class : ''}`}>
-        <div className={classes.inputContainer}>
-          <label htmlFor={name}>{label}</label>
-          {children}
-        </div>
-        {this.props.errorMessage && (
-          <p data-testid="errorMessage" className={classes.errorMessage}>
-            {errorMessage}
-          </p>
-        )}
+  return (
+    <div className={`${classes.formItem} ${props.class ? props.class : ''}`}>
+      <div className={classes.inputContainer}>
+        <label htmlFor={name}>{label}</label>
+        {children}
       </div>
-    );
-  }
-}
+      {props.errorMessage && (
+        <p data-testid="errorMessage" className={classes.errorMessage}>
+          {errorMessage}
+        </p>
+      )}
+    </div>
+  );
+};
 
 export default FormItemWrapper;

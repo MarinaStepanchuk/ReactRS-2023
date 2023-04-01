@@ -24,7 +24,7 @@ const ItemMovie = (props: IItemMoviesProps) => {
   const { name, poster, year, countries, rating } = props.movie;
 
   if (!foundMovie(props.movie)) {
-    return;
+    return <></>;
   }
 
   return (
