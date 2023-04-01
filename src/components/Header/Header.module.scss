@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+    padding: 0;
+    font-size: 20px;
+
+    .active {
+      color: rgb(155, 150, 150);
+    }
+  }
+
+  .link {
+    color: inherit;
+
+    &:hover {
+      color: rgb(155, 150, 150);
+    }
+  }
+}
+
+.activeLink {
+  color: rgb(155, 150, 150);
+}
+
+h1 {
+  font-size: 35px;
+  color: rgb(255, 255, 255);
+  margin: 0px;
+}
