@@ -1,0 +1,112 @@
+.critiqueForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  width: max-content;
+  margin: 0 auto;
+  background-color: rgb(221, 211, 208);
+  border-radius: 20px;
+  padding: 20px 40px;
+  margin-bottom: 20px;
+
+  h3 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .dataWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .formTitle {
+    align-self: center;
+  }
+
+  .recommendations {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .personal {
+    width: max-content;
+    align-self: center;
+  }
+
+  .submit {
+    position: relative;
+    width: 200px;
+    height: 35px;
+    border-radius: 8px;
+    padding: 0px 20px;
+    outline: none;
+    border: none;
+    background-color: rgb(68, 113, 113);
+    color: rgb(227, 227, 227);
+    font-size: 20px;
+    align-self: center;
+    cursor: pointer;
+  }
+
+  .formBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .customInput {
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid rgb(68, 113, 113);
+  }
+
+  select {
+    cursor: pointer;
+  }
+
+  label {
+    min-width: max-content;
+    cursor: pointer;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  textarea {
+    width: 200px;
+  }
+
+  .radioContainer {
+    align-self: center;
+  }
+
+  .choiceInput {
+    width: max-content;
+    order: 1;
+  }
+
+  .review label {
+    align-self: flex-start;
+  }
+
+  .personal label {
+    order: 2;
+    align-self: center;
+  }
+
+  .errorMessage {
+    width: 100%;
+    text-align: left;
+    font-size: 10px;
+    color: rgb(175, 62, 62);
+  }
+}

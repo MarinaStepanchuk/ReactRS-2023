@@ -30,3 +30,12 @@ body {
 h1 {
   line-height: 1.1;
 }
+
+h2 {
+  color: rgb(255, 255, 255);
+  font-weight: normal;
+}
+
+p {
+  margin: 0;
+}

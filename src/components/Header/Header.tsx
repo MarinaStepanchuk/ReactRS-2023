@@ -1,12 +1,8 @@
-import { Pages, Paths } from '../../constants/common.constants';
 import React from 'react';
+import { Pages, Paths } from '../../constants/common.constants';
 import { NavLink } from 'react-router-dom';
+import getRouteTitle from '../../utils/getRouteTitle';
 import classes from './Header.module.scss';
-
-const getRouteTitle = () => {
-  const url = location.pathname;
-  return Object.values(Paths).find((item) => item.path === url)?.title || '';
-};
 
 class Header extends React.Component<object, { title?: string }> {
   public state;
@@ -49,6 +45,17 @@ class Header extends React.Component<object, { title?: string }> {
                 onClick={() => this.changeTitle(Paths.about.title)}
               >
                 {Pages.about}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `${classes.activeLink}` : `${classes.link}`
+                }
+                to={Paths.critiques.path}
+                onClick={() => this.changeTitle(Paths.critiques.title)}
+              >
+                {Pages.critiques}
               </NavLink>
             </li>
           </ul>

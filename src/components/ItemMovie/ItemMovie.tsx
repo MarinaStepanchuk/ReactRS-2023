@@ -1,6 +1,6 @@
-import { Content } from '../../constants/common.constants';
 import React from 'react';
-import IMovie from '../../interfaces/interfaces';
+import { Content } from '../../constants/common.constants';
+import { IMovie } from '../../types/interfaces';
 import classes from './ItemMovie.module.scss';
 
 interface IItemMoviesProps {
@@ -10,16 +10,22 @@ interface IItemMoviesProps {
 }
 
 class ItemMovie extends React.Component<IItemMoviesProps> {
-  public render(): JSX.Element | undefined {
-    const { name, poster, year, countries, rating } = this.props.movie;
+  private foundMovie(movie: IMovie): boolean {
+    const { name, year, countries, rating } = movie;
     const text = this.props.text;
 
-    if (
+    const movieFound =
       !name.includes(text) &&
       !year.toString().includes(text) &&
       !rating.toString().includes(text) &&
-      countries.filter((country) => country.name.includes(text)).length === 0
-    ) {
+      countries.filter((country) => country.name.includes(text)).length === 0;
+    return !movieFound;
+  }
+
+  public render(): JSX.Element | undefined {
+    const { name, poster, year, countries, rating } = this.props.movie;
+
+    if (!this.foundMovie(this.props.movie)) {
       return;
     }
 
