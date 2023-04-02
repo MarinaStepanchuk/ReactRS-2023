@@ -6,19 +6,14 @@ interface ISearchBarProps {
   onTextChange: (value: string) => void;
 }
 
-const SearchBar = (props: ISearchBarProps) => {
+const SearchBar = ({ text, onTextChange }: ISearchBarProps): JSX.Element => {
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    props.onTextChange(e.target.value);
+    onTextChange(e.target.value);
   };
 
   return (
     <div className={classes.searchBar}>
-      <input
-        className={classes.search}
-        type="text"
-        value={props.text}
-        onChange={handleTextChange}
-      />
+      <input className={classes.search} type="text" value={text} onChange={handleTextChange} />
       <button className={classes.submit}>{Buttons.search}</button>
     </div>
   );

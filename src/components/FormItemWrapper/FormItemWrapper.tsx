@@ -9,22 +9,24 @@ interface IFormItemProps {
   class?: string;
 }
 
-const FormItemWrapper = (props: IFormItemProps) => {
-  const { label, name, children, errorMessage } = props;
-
-  return (
-    <div className={`${classes.formItem} ${props.class ? props.class : ''}`}>
-      <div className={classes.inputContainer}>
-        <label htmlFor={name}>{label}</label>
-        {children}
-      </div>
-      {props.errorMessage && (
-        <p data-testid="errorMessage" className={classes.errorMessage}>
-          {errorMessage}
-        </p>
-      )}
+const FormItemWrapper = ({
+  label,
+  name,
+  children,
+  errorMessage,
+  class: extraClass,
+}: IFormItemProps): JSX.Element => (
+  <div className={`${classes.formItem} ${extraClass ? extraClass : ''}`}>
+    <div className={classes.inputContainer}>
+      <label htmlFor={name}>{label}</label>
+      {children}
     </div>
-  );
-};
+    {errorMessage && (
+      <p data-testid="errorMessage" className={classes.errorMessage}>
+        {errorMessage}
+      </p>
+    )}
+  </div>
+);
 
 export default FormItemWrapper;

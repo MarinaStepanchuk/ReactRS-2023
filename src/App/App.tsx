@@ -7,18 +7,15 @@ import Header from '../components/Header/Header';
 import Critiques from '../pages/Critiques/Critiques';
 import { Paths } from '../constants/common.constants';
 
-const App = () => {
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path={Paths.main.path} element={<Main />} />
-        <Route path={Paths.about.path} element={<AboutUs />} />
-        <Route path={Paths.critiques.path} element={<Critiques />} />
-        <Route path={Paths.error.path} element={<Error />} />
-      </Routes>
-    </>
-  );
-};
-
+const App = (): JSX.Element => (
+  <>
+    <Header />
+    <Routes>
+      <Route path={Paths.main.path} element={<Main />} />
+      <Route path={Paths.about.path} element={<AboutUs />} />
+      <Route path={Paths.critiques.path} element={<Critiques />} />
+      <Route path={Paths.error.path} element={<Error />} />
+    </Routes>
+  </>
+);
 export default App;

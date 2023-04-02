@@ -313,14 +313,14 @@ const Countries = [
 
 const ErrorMessages = {
   emptyLine: 'The field cannot be empty',
-  invalidName: 'You need two words starting with a capital letter, at least 3 characters',
+  invalidName: 'You need two words starting with a capital letter, at least 4 characters',
   missingPhoto: 'Missing photo',
   wrongDate: 'It is not possible to choose a date longer than today',
   recommended: 'It is necessary to leave recommendations',
   personalData: 'You must consent to the processing of personal data',
 };
 
-const regName = /^([A-Z А-Я][a-zа-я]{2,})[ ]([A-Z А-Я][a-zа-я]{2,})(([A-Z А-Я][a-zа-я]{0,}){0,})/gm;
+const RegName = /^([A-Z А-Я][a-zа-я]{2,})[ ]([A-Z А-Я][a-zа-я]{2,})(([A-Z А-Я][a-zа-я]{0,}){0,})/gm;
 
 export {
   Paths,
@@ -331,6 +331,6 @@ export {
   LocalStorageKeys,
   Countries,
   ErrorMessages,
-  regName,
+  RegName,
   ImageFormats,
 };

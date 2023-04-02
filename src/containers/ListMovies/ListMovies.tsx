@@ -7,14 +7,12 @@ interface IListMoviesProps {
   movies: IMovie[];
 }
 
-const ListMovies = (props: IListMoviesProps) => {
-  return (
-    <div className={classes.list}>
-      {props.movies.map((movie) => (
-        <ItemMovie text={props.text} key={movie.id} movie={movie} />
-      ))}
-    </div>
-  );
-};
+const ListMovies = ({ text, movies }: IListMoviesProps): JSX.Element => (
+  <div className={classes.list}>
+    {movies.map((movie) => (
+      <ItemMovie text={text} key={movie.id} movie={movie} />
+    ))}
+  </div>
+);
 
 export default ListMovies;

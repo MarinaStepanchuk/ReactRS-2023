@@ -4,12 +4,10 @@ import getRouteTitle from '../../utils/getRouteTitle';
 import classes from './Header.module.scss';
 import { useState } from 'react';
 
-const Header = () => {
-  const [title, setTitle] = useState(getRouteTitle());
+const Header = (): JSX.Element => {
+  const [title, setTitle] = useState<string>(getRouteTitle());
 
-  const changeTitle = (page: string): void => {
-    setTitle(page);
-  };
+  const changeTitle = (page: string) => () => setTitle(page);
 
   return (
     <header className={classes.header}>
@@ -19,7 +17,7 @@ const Header = () => {
             <NavLink
               className={({ isActive }) => (isActive ? `${classes.activeLink}` : `${classes.link}`)}
               to={Paths.main.path}
-              onClick={() => changeTitle(Paths.main.title)}
+              onClick={changeTitle(Paths.main.title)}
             >
               {Pages.main}
             </NavLink>
@@ -28,7 +26,7 @@ const Header = () => {
             <NavLink
               className={({ isActive }) => (isActive ? `${classes.activeLink}` : `${classes.link}`)}
               to={Paths.about.path}
-              onClick={() => changeTitle(Paths.about.title)}
+              onClick={changeTitle(Paths.about.title)}
             >
               {Pages.about}
             </NavLink>
@@ -37,7 +35,7 @@ const Header = () => {
             <NavLink
               className={({ isActive }) => (isActive ? `${classes.activeLink}` : `${classes.link}`)}
               to={Paths.critiques.path}
-              onClick={() => changeTitle(Paths.critiques.title)}
+              onClick={changeTitle(Paths.critiques.title)}
             >
               {Pages.critiques}
             </NavLink>

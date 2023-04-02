@@ -3,7 +3,7 @@ import {
   Countries,
   InputName,
   ImageFormats,
-  regName,
+  RegName,
   ErrorMessages,
 } from '../../constants/common.constants';
 import FormItemWrapper from '../FormItemWrapper/FormItemWrapper';
@@ -26,7 +26,7 @@ interface IFormData {
   personal: boolean;
 }
 
-const Form = (props: IFormProps) => {
+const Form = (props: IFormProps): JSX.Element => {
   const {
     register,
     handleSubmit,
@@ -80,7 +80,7 @@ const Form = (props: IFormProps) => {
               type="text"
               {...register('name', {
                 required: ErrorMessages.emptyLine,
-                pattern: { value: regName, message: ErrorMessages.invalidName },
+                pattern: { value: RegName, message: ErrorMessages.invalidName },
               })}
               id={InputName.name}
             />
@@ -97,8 +97,8 @@ const Form = (props: IFormProps) => {
               })}
               id={InputName.country}
             >
-              {Countries.map((country, index) => (
-                <option key={index}>{country}</option>
+              {Countries.map((country) => (
+                <option key={country}>{country}</option>
               ))}
             </select>
           </FormItemWrapper>

@@ -8,10 +8,11 @@ interface IItemMoviesProps {
   text: string;
 }
 
-const ItemMovie = (props: IItemMoviesProps) => {
+const ItemMovie = ({ text, movie }: IItemMoviesProps): JSX.Element | null => {
+  const { name, poster, year, countries, rating } = movie;
+
   const foundMovie = (movie: IMovie): boolean => {
     const { name, year, countries, rating } = movie;
-    const text = props.text;
 
     const movieFound =
       !name.includes(text) &&
@@ -21,10 +22,8 @@ const ItemMovie = (props: IItemMoviesProps) => {
     return !movieFound;
   };
 
-  const { name, poster, year, countries, rating } = props.movie;
-
-  if (!foundMovie(props.movie)) {
-    return <></>;
+  if (!foundMovie(movie)) {
+    return null;
   }
 
   return (

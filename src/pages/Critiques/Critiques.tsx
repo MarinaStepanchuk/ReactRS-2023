@@ -11,7 +11,7 @@ const Critiques = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [reviews, setReviews] = useState<ICritique[]>([]);
 
-  const sendReview: (card: ICritique) => void = (card) => {
+  const sendReview = (card: ICritique): void => {
     setShowMessage(true);
 
     setTimeout(() => {
