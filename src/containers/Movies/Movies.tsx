@@ -6,7 +6,6 @@ import { LocalStorageKeys } from '../../constants/common.constants';
 
 const Movies = (): JSX.Element => {
   const movies = defaultMoviesState;
-  // let text = localStorage.getItem(LocalStorageKeys.search) || '';
   const [text, setText] = useState(localStorage.getItem(LocalStorageKeys.search) || '');
 
   const handleTextChange = (textV: string): void => {
