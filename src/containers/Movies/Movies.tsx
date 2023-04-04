@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import defaultMoviesState from '../../constants/defaultStateMovies';
 import ListMovies from '../ListMovies/ListMovies';
@@ -9,9 +9,12 @@ const Movies = (): JSX.Element => {
   const [text, setText] = useState(localStorage.getItem(LocalStorageKeys.search) || '');
 
   const handleTextChange = (text: string): void => {
-    localStorage.setItem(LocalStorageKeys.search, `${text}`);
     setText(text);
   };
+
+  useEffect(() => {
+    return () => localStorage.setItem(LocalStorageKeys.search, `${text}`);
+  }, [text]);
 
   return (
     <section>
