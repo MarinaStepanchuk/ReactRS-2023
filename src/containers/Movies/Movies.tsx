@@ -14,7 +14,7 @@ const Movies = (): JSX.Element => {
 
   useEffect(() => {
     return () => localStorage.setItem(LocalStorageKeys.search, `${text}`);
-  }, [text]);
+  });
 
   return (
     <section>
