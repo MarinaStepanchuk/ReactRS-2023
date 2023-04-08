@@ -15,7 +15,6 @@ interface ICritique {
   movie: string;
   review: string;
   recommended: boolean;
-  unrecommended: boolean;
   personal: boolean;
 }
 

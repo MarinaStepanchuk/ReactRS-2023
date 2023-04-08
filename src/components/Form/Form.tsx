@@ -1,225 +1,220 @@
-import React from 'react';
-import { Content, Countries, InputName, ImageFormats } from '../../constants/common.constants';
+import {
+  Content,
+  Countries,
+  InputName,
+  ImageFormats,
+  RegName,
+  ErrorMessages,
+} from '../../constants/common.constants';
 import FormItemWrapper from '../FormItemWrapper/FormItemWrapper';
 import { ICritique } from '../../types/interfaces';
-import ErrorsObject from '../../types/types';
+import { useForm } from 'react-hook-form';
 import classes from './Form.module.scss';
 
 interface IFormProps {
   onSubmit: (card: ICritique) => void;
-  shouldClear: boolean;
-  errors?: ErrorsObject;
 }
 
-class Form extends React.Component<IFormProps> {
-  private form: React.RefObject<HTMLFormElement>;
+interface IFormData {
+  name: string;
+  country: string;
+  photo: FileList | string;
+  movie: string;
+  date: string;
+  review: string;
+  recommended: string;
+  personal: boolean;
+}
 
-  private nameRef: React.RefObject<HTMLInputElement>;
+const Form = (props: IFormProps): JSX.Element => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: {
+      name: '',
+      country: '',
+      photo: '',
+      movie: '',
+      date: '',
+      review: '',
+      recommended: 'off',
+      personal: false,
+    },
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
 
-  private countryRef: React.RefObject<HTMLSelectElement>;
+  const onSubmitForm = (data: IFormData) => {
+    const { name, country, photo, date, movie, review, recommended, personal } = data;
 
-  private photoRef: React.RefObject<HTMLInputElement>;
-
-  private movieRef: React.RefObject<HTMLInputElement>;
-
-  private dateRef: React.RefObject<HTMLInputElement>;
-
-  private reviewRef: React.RefObject<HTMLTextAreaElement>;
-
-  private recommendedRef: React.RefObject<HTMLInputElement>;
-
-  private unrecommendedRef: React.RefObject<HTMLInputElement>;
-
-  private personalRef: React.RefObject<HTMLInputElement>;
-
-  constructor(prop: IFormProps) {
-    super(prop);
-    this.form = React.createRef();
-    this.nameRef = React.createRef();
-    this.countryRef = React.createRef();
-    this.photoRef = React.createRef();
-    this.movieRef = React.createRef();
-    this.dateRef = React.createRef();
-    this.reviewRef = React.createRef();
-    this.recommendedRef = React.createRef();
-    this.unrecommendedRef = React.createRef();
-    this.personalRef = React.createRef();
-  }
-
-  private submitForm: React.MouseEventHandler<HTMLButtonElement> = () => {
     const card = {
-      name: this.extractStringValue(this.nameRef),
-      country: this.extractStringValue(this.countryRef),
-      photo: this.photoRef.current!.files?.length
-        ? URL.createObjectURL(this.photoRef.current!.files![0])
-        : '',
-      date: this.extractStringValue(this.dateRef),
-      movie: this.extractStringValue(this.movieRef),
-      review: this.extractStringValue(this.reviewRef),
-      recommended: this.extractCheckValue(this.recommendedRef),
-      unrecommended: this.extractCheckValue(this.unrecommendedRef),
-      personal: this.extractCheckValue(this.personalRef),
+      name: name,
+      country: country,
+      photo: URL.createObjectURL(photo[0] as Blob | MediaSource),
+      date: date,
+      movie: movie,
+      review: review,
+      recommended: recommended === 'recommended',
+      personal: personal,
     };
-    this.props.onSubmit(card);
+
+    props.onSubmit(card);
+    reset();
   };
 
-  private cancelDefaultBehavior: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
-    event.preventDefault();
-  };
-
-  private extractStringValue(
-    ref:
-      | React.RefObject<HTMLInputElement>
-      | React.RefObject<HTMLSelectElement>
-      | React.RefObject<HTMLTextAreaElement>
-  ): string {
-    return ref.current ? ref.current.value : '';
-  }
-
-  private extractCheckValue(ref: React.RefObject<HTMLInputElement>): boolean {
-    return ref.current ? ref.current.checked : false;
-  }
-
-  public componentDidUpdate(): void {
-    if (this.props.shouldClear) {
-      this.form.current?.reset();
-    }
-  }
-
-  public render(): JSX.Element | undefined {
-    return (
-      <form className={classes.critiqueForm} onSubmit={this.cancelDefaultBehavior} ref={this.form}>
-        <h3 className={classes.formTitle}>{Content.formTitle}</h3>
-        <div className={classes.dataWrapper}>
-          <div className={classes.formBlock}>
-            <FormItemWrapper
-              label={Content.critique.nameLabel}
-              errorMessage={this.props.errors?.name}
-              name={InputName.name}
+  return (
+    <form className={classes.critiqueForm} onSubmit={handleSubmit(onSubmitForm)}>
+      <h3 className={classes.formTitle}>{Content.formTitle}</h3>
+      <div className={classes.dataWrapper}>
+        <div className={classes.formBlock}>
+          <FormItemWrapper
+            label={Content.critique.nameLabel}
+            errorMessage={errors.name?.message}
+            name={InputName.name}
+          >
+            <input
+              className={classes.customInput}
+              type="text"
+              {...register('name', {
+                required: ErrorMessages.emptyLine,
+                pattern: { value: RegName, message: ErrorMessages.invalidName },
+              })}
+              id={InputName.name}
+            />
+          </FormItemWrapper>
+          <FormItemWrapper
+            label={Content.critique.country}
+            errorMessage={errors.country?.message}
+            name={InputName.country}
+          >
+            <select
+              className={classes.customInput}
+              {...register('country', {
+                required: ErrorMessages.emptyLine,
+              })}
+              id={InputName.country}
             >
-              <input
-                className={classes.customInput}
-                type="text"
-                ref={this.nameRef}
-                id={InputName.name}
-              />
-            </FormItemWrapper>
-            <FormItemWrapper
-              label={Content.critique.country}
-              errorMessage={this.props.errors?.country}
-              name={InputName.country}
-            >
-              <select
-                className={classes.customInput}
-                ref={this.countryRef}
-                defaultValue="default"
-                id={InputName.country}
-              >
-                <option value="default" disabled></option>
-                {Countries.map((country, index) => (
-                  <option key={index}>{country}</option>
-                ))}
-              </select>
-            </FormItemWrapper>
-            <FormItemWrapper
-              label={Content.critique.photo}
-              errorMessage={this.props.errors?.photo}
-              name={InputName.photo}
-            >
-              <input
-                data-testid="dataInput"
-                type="file"
-                ref={this.photoRef}
-                accept={ImageFormats}
-                id={InputName.photo}
-              />
-            </FormItemWrapper>
-            <FormItemWrapper
-              label={Content.critique.movieLabel}
-              errorMessage={this.props.errors?.movie}
-              name={InputName.movie}
-            >
-              <input
-                className={classes.customInput}
-                type="text"
-                ref={this.movieRef}
-                id={InputName.movie}
-              />
-            </FormItemWrapper>
-            <FormItemWrapper
-              label={Content.critique.dateLabel}
-              errorMessage={this.props.errors?.date}
-              name={InputName.date}
-            >
-              <input
-                className={classes.customInput}
-                type="date"
-                ref={this.dateRef}
-                id={InputName.date}
-              />
-            </FormItemWrapper>
-          </div>
-          <div className={classes.formBlock}>
-            <FormItemWrapper
-              label={Content.critique.reviewLabel}
-              errorMessage={this.props.errors?.review}
-              class={classes.review}
-              name={InputName.review}
-            >
-              <textarea
-                cols={150}
-                rows={7}
-                ref={this.reviewRef}
-                id={InputName.review}
-                className={classes.customInput}
-              ></textarea>
-            </FormItemWrapper>
-          </div>
+              {Countries.map((country) => (
+                <option key={country}>{country}</option>
+              ))}
+            </select>
+          </FormItemWrapper>
+          <FormItemWrapper
+            label={Content.critique.photo}
+            errorMessage={errors.photo?.message}
+            name={InputName.photo}
+          >
+            <input
+              data-testid="photoInput"
+              type="file"
+              {...register('photo', {
+                required: ErrorMessages.missingPhoto,
+              })}
+              accept={ImageFormats}
+              id={InputName.photo}
+            />
+          </FormItemWrapper>
+          <FormItemWrapper
+            label={Content.critique.movieLabel}
+            errorMessage={errors.movie?.message}
+            name={InputName.movie}
+          >
+            <input
+              className={classes.customInput}
+              type="text"
+              {...register('movie', {
+                required: ErrorMessages.emptyLine,
+              })}
+              id={InputName.movie}
+            />
+          </FormItemWrapper>
+          <FormItemWrapper
+            label={Content.critique.dateLabel}
+            errorMessage={errors.date?.message}
+            name={InputName.date}
+          >
+            <input
+              className={classes.customInput}
+              data-testid="dateInput"
+              type="date"
+              {...register('date', {
+                required: ErrorMessages.emptyLine,
+                validate: (value) =>
+                  new Date(value).getTime() < new Date().getTime() || ErrorMessages.wrongDate,
+              })}
+              id={InputName.date}
+            />
+          </FormItemWrapper>
         </div>
-        <div className={classes.radioContainer}>
-          <div className={`${classes.recommendations} ${classes.inputContainer}`}>
-            <label>
-              <input
-                className={classes.choiceInput}
-                type="radio"
-                name="recommendations"
-                ref={this.recommendedRef}
-              />
-              {Content.critique.recommend}
-            </label>
-            <label>
-              <input
-                className={classes.choiceInput}
-                type="radio"
-                name="recommendations"
-                ref={this.unrecommendedRef}
-              />
-              {Content.critique.unrecommended}
-            </label>
-          </div>
-          {this.props.errors && (
-            <p className={classes.errorMessage}>{this.props.errors.recommended}</p>
-          )}
+        <div className={classes.formBlock}>
+          <FormItemWrapper
+            label={Content.critique.reviewLabel}
+            errorMessage={errors.review?.message}
+            class={classes.review}
+            name={InputName.review}
+          >
+            <textarea
+              cols={150}
+              rows={7}
+              {...register('review', {
+                required: ErrorMessages.emptyLine,
+              })}
+              id={InputName.review}
+              className={classes.customInput}
+            ></textarea>
+          </FormItemWrapper>
         </div>
-        <FormItemWrapper
-          label={Content.critique.personalDate}
-          errorMessage={this.props.errors?.personal}
-          class={classes.personal}
-          name={InputName.personalDate}
-        >
-          <input
-            className={classes.choiceInput}
-            type="checkbox"
-            ref={this.personalRef}
-            id={InputName.personalDate}
-          />
-        </FormItemWrapper>
-        <button className={classes.submit} type="submit" onClick={this.submitForm}>
-          {Content.formSubmit}
-        </button>
-      </form>
-    );
-  }
-}
+      </div>
+      <div className={classes.radioContainer}>
+        <div className={`${classes.recommendations} ${classes.inputContainer}`}>
+          <label>
+            <input
+              className={classes.choiceInput}
+              value="recommended"
+              type="radio"
+              {...register('recommended', {
+                required: ErrorMessages.recommended,
+              })}
+            />
+            {Content.critique.recommend}
+          </label>
+          <label>
+            <input
+              className={classes.choiceInput}
+              value="unrecommended"
+              type="radio"
+              {...register('recommended', {
+                required: ErrorMessages.recommended,
+              })}
+            />
+            {Content.critique.unrecommended}
+          </label>
+        </div>
+        {errors.recommended?.message && (
+          <p className={classes.errorMessage}>{errors.recommended?.message}</p>
+        )}
+      </div>
+      <FormItemWrapper
+        label={Content.critique.personalDate}
+        errorMessage={errors.personal?.message}
+        class={classes.personal}
+        name={InputName.personalDate}
+      >
+        <input
+          className={classes.choiceInput}
+          type="checkbox"
+          {...register('personal', {
+            required: ErrorMessages.personalData,
+          })}
+          id={InputName.personalDate}
+        />
+      </FormItemWrapper>
+      <input className={classes.submit} type="submit" value={Content.formSubmit}></input>
+    </form>
+  );
+};
 
 export default Form;

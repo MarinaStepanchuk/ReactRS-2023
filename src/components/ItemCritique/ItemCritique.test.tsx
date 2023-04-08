@@ -15,7 +15,7 @@ describe('ItemCritique', () => {
   };
 
   it('should render correct', () => {
-    render(<ItemCritique key={1245} critique={critique} />);
+    render(<ItemCritique key={1245} {...critique} />);
     expect(screen.getByRole('img').getAttribute('src')).toBe(critique.photo);
   });
 });
