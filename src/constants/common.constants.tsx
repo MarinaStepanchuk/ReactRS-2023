@@ -21,6 +21,9 @@ const Content = {
   rating: 'Рейтинг: ',
   year: 'Год выпуска: ',
   country: 'Страна: ',
+  genres: 'Жанры: ',
+  movieLength: 'Продолжительность: ',
+  duration: 'мин.',
   greeting: 'Введите фильм, который вы ищете, поиск производится по названию.',
   about:
     'MovieSearch — уникальная платформа для поиска фильмов. Здесь вы найдете фильм или мультфильм на любой вкус. Мы позаботимся о добавлении новых выпусков, как только они будут выпущены. Воспользуйтесь нашим поиском, чтобы найти фильм, который понравится сегодня вечером.',
@@ -325,11 +328,9 @@ const ApiErrorMessage = {
   notFound: 'Не найдено данных, соответствующих запросу',
 };
 
-const DefaultValuesCard = {
-  year: 'неизвестен',
-  countries: 'не известна',
-  rating: 'неизвестен',
-};
+const DefaultValuesCard = 'нет данных';
+
+const DefaultValuesDescription = 'Описание отсутствует';
 
 const StarIcon = '★';
 
@@ -345,5 +346,6 @@ export {
   ImageFormats,
   ApiErrorMessage,
   DefaultValuesCard,
+  DefaultValuesDescription,
   StarIcon,
 };

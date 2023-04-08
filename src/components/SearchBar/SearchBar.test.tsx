@@ -9,7 +9,7 @@ describe('SearchBar', () => {
   it('should call function test', async () => {
     const user = userEvent.setup();
     render(<SearchBar onTextChange={onTextChange} />);
-    await user.type(screen.getByRole('textbox'), '123');
+    await user.type(screen.getByRole('textbox'), '123{enter}');
     expect(onTextChange).toHaveBeenCalled();
   });
 });

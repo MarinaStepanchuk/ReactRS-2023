@@ -14,7 +14,6 @@ const SearchBar = ({ onTextChange }: ISearchBarProps): JSX.Element => {
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     inputText.current = e.target.value;
     setSearchText(e.target.value);
-    // onTextChange(e.target.value);
   };
 
   useEffect(() => () => localStorage.setItem(LocalStorageKeys.search, `${inputText.current}`), []);

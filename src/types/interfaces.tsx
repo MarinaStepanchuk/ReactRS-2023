@@ -64,6 +64,95 @@ interface IMovies {
   pages: number;
 }
 
+interface IFacts {
+  value: string | null;
+  type: string | null;
+  spoiler: boolean | null;
+}
+
+interface IPerson {
+  id: number | null;
+  photo: string | null;
+  name: string | null;
+  enName: string | null;
+  profession: string | null;
+  enProfession: string | null;
+}
+
+interface ITrailer {
+  url: string | null;
+  name: string | null;
+  site: string | null;
+}
+
+interface ISimilarMovie {
+  id: number | null;
+  name: string | null;
+  enName: string | null;
+  alternativeName: string | null;
+  poster: {
+    url: string | null;
+    previewUrl: string | null;
+  } | null;
+}
+
+interface IFee {
+  world: {
+    value: number | null;
+    currency: string | null;
+  };
+  russia: {
+    value: number | null;
+    currency: string | null;
+  };
+  usa: {
+    value: number | null;
+    currency: string | null;
+  };
+}
+
+interface IMovieById extends IMovie {
+  collections: Array<string> | null;
+  createdAt: string | null;
+  facts: Array<IFacts> | null;
+  persons: Array<IPerson> | null;
+  productionCompanies: Array<string> | null;
+  ratingMpaa: string;
+  seasonsInfo: Array<string> | null;
+  sequelsAndPrequels: Array<string> | null;
+  similarMovies: Array<ISimilarMovie> | null;
+  slogan: string | null;
+  spokenLanguages: string | null;
+  technology: {
+    hasImax: boolean | null;
+    has3D: boolean | null;
+  } | null;
+  ticketsOnSale: boolean | null;
+  typeNumber: number | null;
+  updatedAt: string | null;
+  videos: {
+    trailers: Array<ITrailer> | null;
+    teasers: Array<string>;
+  } | null;
+  premiere: {
+    country: string | null;
+    world: string | null;
+    russia: string | null;
+    cinema: string | null;
+    dvd: string | null;
+  } | null;
+  fees: IFee | null;
+  budget: object | null;
+  ageRating: number | null;
+  backdrop: {
+    url: string | null;
+    previewUrl: string | null;
+  } | null;
+  status: number | null;
+  top10: number | null;
+  top250: number | null;
+}
+
 interface ICritique {
   name: string;
   country: string;
@@ -75,4 +164,4 @@ interface ICritique {
   personal: boolean;
 }
 
-export { IMovie, IMovies, ICritique };
+export { IMovie, IMovies, IMovieById, ICritique };
