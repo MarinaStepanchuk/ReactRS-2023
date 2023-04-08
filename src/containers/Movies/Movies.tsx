@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
-// import defaultMoviesState from '../../constants/defaultStateMovies';
 import ListMovies from '../ListMovies/ListMovies';
 import { ApiErrorMessage, LocalStorageKeys } from '../../constants/common.constants';
 import Api from '../../Api/Api';
