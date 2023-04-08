@@ -1,12 +1,3 @@
-// interface IMovie {
-//   id: number;
-//   name: string;
-//   countries: { name: string }[];
-//   year: number;
-//   poster: string;
-//   rating: number;
-// }
-
 interface INameMovie {
   name: string | null;
   language?: string | null;
