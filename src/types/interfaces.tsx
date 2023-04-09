@@ -164,4 +164,10 @@ interface ICritique {
   personal: boolean;
 }
 
-export { IMovie, IMovies, IMovieById, ICritique };
+interface IErrorResponse {
+  statusCode: number;
+  message: string;
+  error: string;
+}
+
+export { IMovie, IMovies, IMovieById, ICritique, IErrorResponse };

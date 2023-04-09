@@ -1,10 +1,10 @@
-import { IMovie, IMovieById, IMovies } from '../types/interfaces';
+import { IErrorResponse, IMovie, IMovieById, IMovies } from '../types/interfaces';
 
 const Headers = {
   key: 'X-API-KEY',
 };
 
-const ApiKey = 'Z3153R0-XX2MS42-P2WPK4R-GXEGX3S';
+const ApiKey = '76HP0HF-JE0MXDF-G52ZG6R-M0VGAA7';
 
 const ResponseStatus = {
   ok: 200,
@@ -16,7 +16,7 @@ export const Url = {
 };
 
 class Api {
-  public static async getMovies(text: string): Promise<IMovie[] | null | undefined | Error> {
+  public static async getMovies(text: string): Promise<IMovie[] | null | string> {
     try {
       const response = await fetch(`${Url.allMovies}${text}`, {
         headers: {
@@ -28,14 +28,19 @@ class Api {
         const movies: IMovies = await response.json();
         return movies.docs;
       }
+
+      const data: IErrorResponse = await response.json();
+
+      throw new Error(data.message);
     } catch (error) {
       if (error instanceof Error) {
-        return error;
+        return error.message;
       }
+
       return null;
     }
   }
-  public static async getMovieById(id: string): Promise<IMovieById | null | undefined | Error> {
+  public static async getMovieById(id: string): Promise<IMovieById | null | string> {
     try {
       const response = await fetch(`${Url.movie}${id}`, {
         headers: {
@@ -47,10 +52,15 @@ class Api {
         const movie: IMovieById = await response.json();
         return movie;
       }
+
+      const data: IErrorResponse = await response.json();
+
+      throw new Error(data.message);
     } catch (error) {
       if (error instanceof Error) {
-        return error;
+        return error.message;
       }
+
       return null;
     }
   }

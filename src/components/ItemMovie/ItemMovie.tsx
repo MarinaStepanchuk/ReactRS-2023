@@ -31,15 +31,15 @@ const ItemMovie = ({ movie }: IItemMoviesProps): JSX.Element | null => {
     setShowPreloader(true);
     const data = await Api.getMovieById(id);
 
-    if (data instanceof Error) {
-      setShowPreloader(false);
-      setErrorMessage(data.message);
-      return;
-    }
-
     if (!data) {
       setShowPreloader(false);
       setErrorMessage(ApiErrorMessage.unknownError);
+      return;
+    }
+
+    if (typeof data === 'string') {
+      setShowPreloader(false);
+      setErrorMessage(data);
       return;
     }
 

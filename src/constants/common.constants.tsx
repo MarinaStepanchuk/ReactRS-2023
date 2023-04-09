@@ -34,7 +34,7 @@ const Content = {
     dateLabel: 'Дата просмотра: ',
     movieLabel: 'Фильм: ',
     reviewLabel: 'Ваш отзыв: ',
-    recommend: 'рукомендую',
+    recommend: 'рекомендую',
     unrecommended: 'не рекомендую',
     personalDate: 'Я даю согласие на использование моих персональных данных',
     country: 'Страна проживания: ',

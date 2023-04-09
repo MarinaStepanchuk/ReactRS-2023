@@ -25,8 +25,8 @@ const Movies = (): JSX.Element => {
     const fetchData = async (): Promise<void> => {
       const data = await Api.getMovies(text);
 
-      if (data instanceof Error) {
-        showErrorMessage(data.message);
+      if (typeof data === 'string') {
+        showErrorMessage(data);
       }
 
       if (!data) {

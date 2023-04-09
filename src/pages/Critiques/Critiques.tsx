@@ -5,7 +5,7 @@ import ListCritiques from '../../containers/ListCritiques/ListCritiques';
 import { ICritique } from '../../types/interfaces';
 import classes from './Critiques.module.scss';
 
-const SendMessage = 'Thanks. The review is saved.';
+const SendMessage = 'Спасибо. Ваша рецензия отправлена';
 
 const Critiques = () => {
   const [showMessage, setShowMessage] = useState(false);
