@@ -12,10 +12,10 @@
 }
 
 .modalContainer {
-  position: absolute;
-  top: 50vh;
+  position: fixed;
+  bottom: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
   width: 430px;
   z-index: 25;
   display: flex;
@@ -98,9 +98,10 @@
 }
 
 .errorMessageCard {
-  position: absolute;
-  top: 50vh;
+  position: fixed;
+  bottom: 50%;
   left: 50%;
+  transform: translate(-50%, 50%);
   z-index: 23;
   transform: translate(-50%, -50%);
 

@@ -8,7 +8,6 @@ import {
   StarIcon,
 } from '../../constants/common.constants';
 import classes from './ModalCard.module.scss';
-import { useEffect } from 'react';
 
 interface IModalCardProps {
   card: IMovieById | null;
@@ -65,13 +64,6 @@ const ModalCard = ({ card, errorMessage, closeModalCard }: IModalCardProps): JSX
       </div>
     );
   }
-
-  // useEffect(() => {
-  //   document.body.style.overflow = 'hidden';
-  //   return () => {
-  //     document.body.style.overflow = 'auto';
-  //   };
-  // });
 
   const closeModal = (): void => {
     closeModalCard();

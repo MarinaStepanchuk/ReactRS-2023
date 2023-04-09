@@ -4,13 +4,13 @@ const Headers = {
   key: 'X-API-KEY',
 };
 
-const ApiKey = 'XFCTYZY-KV54FTB-G3S8DXX-35JACXA';
+const ApiKey = 'Z3153R0-XX2MS42-P2WPK4R-GXEGX3S';
 
 const ResponseStatus = {
   ok: 200,
 };
 
-const Url = {
+export const Url = {
   allMovies: 'https://api.kinopoisk.dev/v1/movie?name=',
   movie: 'https://api.kinopoisk.dev/v1/movie/',
 };
