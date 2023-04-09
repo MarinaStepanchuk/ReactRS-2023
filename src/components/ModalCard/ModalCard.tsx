@@ -33,8 +33,7 @@ const ModalCard = ({ card, errorMessage, closeModalCard }: IModalCardProps): JSX
           <div className={classes.details}>
             <p>
               <b>{Content.movieLength}</b>
-              {movieLength || DefaultValuesCard}
-              {Content.duration}
+              {movieLength ? `${movieLength}${Content.duration}` : DefaultValuesCard}
             </p>
             <p>
               <b>{Content.genres}</b>
@@ -45,9 +44,9 @@ const ModalCard = ({ card, errorMessage, closeModalCard }: IModalCardProps): JSX
             </p>
             <p>
               <b>{Content.year}</b>
-              {year || ' '}
+              {year || DefaultValuesCard}
             </p>
-            <p className={''}>
+            <p>
               <b>{Content.country}</b>
               {...countriesArray.map((country, index) =>
                 index !== countriesArray.length - 1 ? `${country.name}, ` : `${country.name}`
@@ -56,7 +55,7 @@ const ModalCard = ({ card, errorMessage, closeModalCard }: IModalCardProps): JSX
             </p>
             <p className={classes.rating}>
               <b>{Content.rating}</b>
-              {`${rating?.imdb} ${StarIcon}` || DefaultValuesCard}
+              {rating?.imdb ? `${rating?.imdb} ${StarIcon}` : DefaultValuesCard}
             </p>
           </div>
         </div>
