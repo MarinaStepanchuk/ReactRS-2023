@@ -1,11 +1,11 @@
 const Paths = {
   main: {
     path: '/',
-    title: 'Main',
+    title: 'Главная',
   },
   about: {
     path: '/about',
-    title: 'About Us',
+    title: 'О нас',
   },
   error: {
     path: '*',
@@ -13,39 +13,40 @@ const Paths = {
   },
   critiques: {
     path: '/critiques',
-    title: 'Critiques',
+    title: 'Рецензии',
   },
-};
-
-const Buttons = {
-  search: 'SEARCH',
 };
 
 const Content = {
-  rating: 'Rating: ',
-  greeting: 'Enter the movie you are looking for, search by any characteristics.',
+  rating: 'Рейтинг: ',
+  year: 'Год выпуска: ',
+  country: 'Страна: ',
+  genres: 'Жанры: ',
+  movieLength: 'Продолжительность: ',
+  duration: 'мин.',
+  greeting: 'Введите фильм, который вы ищете, поиск производится по названию.',
   about:
-    "MovieSearch is a unique movie search platform. Here you'll find a movie or cartoon for every taste. We take care of adding new releases as soon as they are released. Use our search to find a movie to enjoy tonight.",
-  critiquesTitle: 'Here you can leave your review and read the reviews of other users.',
-  formTitle: 'Leave a review: ',
+    'MovieSearch — уникальная платформа для поиска фильмов. Здесь вы найдете фильм или мультфильм на любой вкус. Мы позаботимся о добавлении новых выпусков, как только они будут выпущены. Воспользуйтесь нашим поиском, чтобы найти фильм, который понравится сегодня вечером.',
+  critiquesTitle: 'Здесь вы можете оставить свой отзыв и прочитать отзывы других пользователей.',
+  formTitle: 'Оставьте отзыв: ',
   critique: {
-    nameLabel: "You'r full name: ",
-    dateLabel: 'Date viewed: ',
-    movieLabel: 'Movie title: ',
-    reviewLabel: "You'r review: ",
-    recommend: 'recommend',
-    unrecommended: "don't recommend",
-    personalDate: 'I consent to my personal data field',
-    country: 'Country of residence: ',
-    photo: 'Profile picture: ',
-    cardMovie: 'Movie: ',
-    cardRecommended: 'Recommends for viewing: ',
-    cardDate: 'Viewing date: ',
-    cardReview: 'Review: ',
-    recommendedMovie: 'yes',
-    unrecommendedMovie: 'no',
+    nameLabel: 'Ваши фамилия и имя: ',
+    dateLabel: 'Дата просмотра: ',
+    movieLabel: 'Фильм: ',
+    reviewLabel: 'Ваш отзыв: ',
+    recommend: 'рекомендую',
+    unrecommended: 'не рекомендую',
+    personalDate: 'Я даю согласие на использование моих персональных данных',
+    country: 'Страна проживания: ',
+    photo: 'Фото профиля: ',
+    cardMovie: 'Фильм: ',
+    cardRecommended: 'Рекомендовано к просмотру: ',
+    cardDate: 'Дата просмотра: ',
+    cardReview: 'Рецензия: ',
+    recommendedMovie: 'да',
+    unrecommendedMovie: 'нет',
   },
-  formSubmit: 'Send a review',
+  formSubmit: 'Отправить рецензию',
 };
 
 const InputName = {
@@ -61,10 +62,10 @@ const InputName = {
 const ImageFormats = '.jpg,.jpeg,.png';
 
 const Pages = {
-  main: 'Main',
-  about: 'About Us',
-  error: '404 Page not found',
-  critiques: 'Critiques',
+  main: 'Главная',
+  about: 'О нас',
+  error: '404 Страница не найдена',
+  critiques: 'Рецензии',
 };
 
 const LocalStorageKeys = {
@@ -312,19 +313,29 @@ const Countries = [
 ];
 
 const ErrorMessages = {
-  emptyLine: 'The field cannot be empty',
-  invalidName: 'You need two words starting with a capital letter, at least 4 characters',
-  missingPhoto: 'Missing photo',
-  wrongDate: 'It is not possible to choose a date longer than today',
-  recommended: 'It is necessary to leave recommendations',
-  personalData: 'You must consent to the processing of personal data',
+  emptyLine: 'Поле не может быть пустым',
+  invalidName: 'Необходимо ввести 2 слова с большой буквы, минимум 4 символа каждое',
+  missingPhoto: 'Загрузите фото',
+  wrongDate: 'Дата не должна быть больше текущей',
+  recommended: 'Необходимо оставить рекомендации',
+  personalData: 'Вы должны дать согласие на обработку персональных данных',
 };
 
 const RegName = /^([A-Z А-Я][a-zа-я]{2,})[ ]([A-Z А-Я][a-zа-я]{2,})(([A-Z А-Я][a-zа-я]{0,}){0,})/gm;
 
+const ApiErrorMessage = {
+  unknownError: 'Что-то пошло не так, попробуйте отправить запрос через некоторое время',
+  notFound: 'Не найдено данных, соответствующих запросу',
+};
+
+const DefaultValuesCard = 'нет данных';
+
+const DefaultValuesDescription = 'Описание отсутствует';
+
+const StarIcon = '★';
+
 export {
   Paths,
-  Buttons,
   Content,
   InputName,
   Pages,
@@ -333,4 +344,8 @@ export {
   ErrorMessages,
   RegName,
   ImageFormats,
+  ApiErrorMessage,
+  DefaultValuesCard,
+  DefaultValuesDescription,
+  StarIcon,
 };

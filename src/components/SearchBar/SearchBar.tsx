@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Buttons, LocalStorageKeys } from '../../constants/common.constants';
+import { LocalStorageKeys } from '../../constants/common.constants';
 import classes from './SearchBar.module.scss';
 
 interface ISearchBarProps {
@@ -14,21 +14,25 @@ const SearchBar = ({ onTextChange }: ISearchBarProps): JSX.Element => {
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     inputText.current = e.target.value;
     setSearchText(e.target.value);
-    onTextChange(e.target.value);
   };
 
   useEffect(() => () => localStorage.setItem(LocalStorageKeys.search, `${inputText.current}`), []);
 
+  const onSubmitForm = (e: React.ChangeEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    setSearchText(inputText.current);
+    onTextChange(inputText.current);
+  };
+
   return (
-    <div className={classes.searchBar}>
+    <form className={classes.searchBar} onSubmit={onSubmitForm}>
       <input
         className={classes.search}
         type="text"
         value={searchText}
         onChange={handleTextChange}
       />
-      <button className={classes.submit}>{Buttons.search}</button>
-    </div>
+    </form>
   );
 };
 

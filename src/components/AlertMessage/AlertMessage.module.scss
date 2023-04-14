@@ -1,0 +1,11 @@
+.alertMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(200, 83, 83);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  z-index: 15;
+}

@@ -1,29 +1,30 @@
 import ItemMovie from './ItemMovie';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Url } from '../../Api/Api';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import movieMock from '../../mocks/movieMock';
+import movieDetailsMock from '../../mocks/movieDetailsMock';
 
-describe('ItemMovie', () => {
-  const movie = {
-    id: 1423589,
-    name: 'The Banshees of Inisherin',
-    countries: [
-      {
-        name: 'United Kingdom',
-      },
-      {
-        name: 'United States',
-      },
-      {
-        name: 'Ireland',
-      },
-    ],
-    year: 2022,
-    poster:
-      'https://resizing.flixster.com/SqYohHz5ela5G1qTZ8aKYunK2Oo=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzc4ZjI3ZDBiLTkwMDktNDVkZC1hZmI5LTJiNDdjNWRmZDVjOC5qcGc=',
-    rating: 7.7,
-  };
+const server = setupServer(
+  rest.get(`${Url.movie}${movieDetailsMock.id}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(movieDetailsMock));
+  })
+);
 
-  it('should render correct', () => {
-    render(<ItemMovie key={1423589} movie={movie} text={'Banshees'} />);
-    expect(screen.getByRole('img').getAttribute('src')).toBe(movie.poster);
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+describe('Movies', () => {
+  it('should send fetch and render modal card', async () => {
+    render(<ItemMovie key={movieMock.id} movie={movieMock} />);
+
+    const card = screen.getByText(movieDetailsMock.name);
+    fireEvent.click(card);
+
+    await waitFor(() => {
+      expect(screen.getByText(movieDetailsMock.description)).toBeInTheDocument();
+    });
   });
 });
