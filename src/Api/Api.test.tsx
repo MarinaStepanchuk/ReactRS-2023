@@ -20,14 +20,12 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('Api, getMovies', () => {
+describe('Api', () => {
   it('should return empty array for unknown movie', async () => {
     const data = await Api.getMovies('rrrrrrr');
     expect(data).toEqual(emptyResponse.docs);
   });
-});
 
-describe('Api, getMovieById', () => {
   const error = 'По этому id ничего не найдено!';
 
   it('should return an error on wrong id', async () => {

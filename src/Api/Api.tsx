@@ -6,10 +6,6 @@ const Headers = {
 
 const ApiKey = '76HP0HF-JE0MXDF-G52ZG6R-M0VGAA7';
 
-const ResponseStatus = {
-  ok: 200,
-};
-
 export const Url = {
   allMovies: 'https://api.kinopoisk.dev/v1/movie?name=',
   movie: 'https://api.kinopoisk.dev/v1/movie/',
@@ -24,7 +20,7 @@ class Api {
         },
       });
 
-      if (response.status === ResponseStatus.ok) {
+      if (response.ok) {
         const movies: IMovies = await response.json();
         return movies.docs;
       }
@@ -48,7 +44,7 @@ class Api {
         },
       });
 
-      if (response.status === ResponseStatus.ok) {
+      if (response.ok) {
         const movie: IMovieById = await response.json();
         return movie;
       }

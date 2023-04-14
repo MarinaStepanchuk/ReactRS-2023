@@ -10,8 +10,8 @@ import ModalCard from '../../components/ModalCard/ModalCard';
 import { createPortal } from 'react-dom';
 import { useState } from 'react';
 import Api from '../../Api/Api';
-import classes from './ItemMovie.module.scss';
 import Preloader from '../../components/icons/Preloader/Preloader';
+import classes from './ItemMovie.module.scss';
 
 interface IItemMoviesProps {
   key: number;
@@ -19,7 +19,8 @@ interface IItemMoviesProps {
 }
 
 const ItemMovie = ({ movie }: IItemMoviesProps): JSX.Element | null => {
-  const { id, name, poster, year, countries, rating } = movie;
+  const { id, name, poster, year, countries = [], rating } = movie;
+
   const [showModal, setShowModal] = useState(false);
   const [movieDetail, setMovieDetail] = useState<IMovieById | null>(null);
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
@@ -49,6 +50,7 @@ const ItemMovie = ({ movie }: IItemMoviesProps): JSX.Element | null => {
 
   const showModalCard = (e: React.MouseEvent<HTMLDivElement>): void => {
     const targetElement = e.target as HTMLElement;
+
     if (targetElement.closest(`.${classes.item}`)) {
       getMovieDetails(e.currentTarget.id);
       setShowModal(true);
