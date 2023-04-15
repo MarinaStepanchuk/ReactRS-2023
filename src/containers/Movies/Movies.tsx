@@ -11,7 +11,7 @@ const Movies = (): JSX.Element => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [showPreloader, setShowPreloader] = useState(true);
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
-  const [text, setText] = useState(localStorage.getItem(LocalStorageKeys.search) || '');
+  const [text] = useState(localStorage.getItem(LocalStorageKeys.search) || '');
 
   const showErrorMessage = (message: string) => {
     setShowPreloader(false);
@@ -46,13 +46,9 @@ const Movies = (): JSX.Element => {
     fetchData();
   }, [text]);
 
-  const handleTextChange = (text: string): void => {
-    setText(text);
-  };
-
   return (
     <section>
-      <SearchBar onTextChange={handleTextChange} />
+      <SearchBar />
       {showPreloader && <Preloader />}
       {errorMessage && <AlertErrorMessage message={errorMessage} />}
       <ListMovies movies={movies} />

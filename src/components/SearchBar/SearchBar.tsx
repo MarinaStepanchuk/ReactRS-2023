@@ -1,37 +1,29 @@
-import { useEffect, useRef, useState } from 'react';
-import { LocalStorageKeys } from '../../constants/common.constants';
 import classes from './SearchBar.module.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { moviesSlice } from '../../store/reducers/moviesSlice';
+import { useForm } from 'react-hook-form';
 
-interface ISearchBarProps {
-  onTextChange: (value: string) => void;
-}
+const SearchBar = (): JSX.Element => {
+  const { searchText } = useAppSelector((state) => state.moviesReducer);
+  const { saveText } = moviesSlice.actions;
+  const dispatch = useAppDispatch();
 
-const SearchBar = ({ onTextChange }: ISearchBarProps): JSX.Element => {
-  const [searchText, setSearchText] = useState(localStorage.getItem(LocalStorageKeys.search) || '');
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      text: searchText,
+    },
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
 
-  const inputText = useRef(searchText);
-
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    inputText.current = e.target.value;
-    setSearchText(e.target.value);
-  };
-
-  useEffect(() => () => localStorage.setItem(LocalStorageKeys.search, `${inputText.current}`), []);
-
-  const onSubmitForm = (e: React.ChangeEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    setSearchText(inputText.current);
-    onTextChange(inputText.current);
+  const onSubmitForm = (data: { text: string }): void => {
+    dispatch(saveText(data.text));
+    console.log(searchText);
   };
 
   return (
-    <form className={classes.searchBar} onSubmit={onSubmitForm}>
-      <input
-        className={classes.search}
-        type="text"
-        value={searchText}
-        onChange={handleTextChange}
-      />
+    <form className={classes.searchBar} onSubmit={handleSubmit(onSubmitForm)}>
+      <input {...register('text')} className={classes.search} type="text" />
     </form>
   );
 };
