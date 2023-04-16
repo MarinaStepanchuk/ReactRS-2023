@@ -1,21 +1,26 @@
-import { IMovieById } from '../../types/interfaces';
 import AlertErrorMessage from '../../components/AlertMessage/AlertMessage';
 import notFoundImg from '../../assets/image-not-found.jpg';
 import {
+  ApiErrorMessage,
   Content,
   DefaultValuesCard,
   DefaultValuesDescription,
   StarIcon,
 } from '../../constants/common.constants';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { modalSlice } from '../../redux/store/reducers/ModalSlice/modalSlice';
+import { useGetMovieByIdQuery } from '../../redux/services/MoviesService';
+import Preloader from '../../components/icons/Preloader/Preloader';
+import { createPortal } from 'react-dom';
 import classes from './ModalCard.module.scss';
 
-interface IModalCardProps {
-  card: IMovieById | null;
-  errorMessage: string | null;
-  closeModalCard: () => void;
-}
+const ModalCard = (): JSX.Element => {
+  const { idCard } = useAppSelector((state) => state.modalReducer);
+  const { closeModal } = modalSlice.actions;
+  const dispatch = useAppDispatch();
 
-const ModalCard = ({ card, errorMessage, closeModalCard }: IModalCardProps): JSX.Element => {
+  const { data: card, isFetching, isError } = useGetMovieByIdQuery(idCard);
+
   let modal;
 
   if (card) {
@@ -64,25 +69,26 @@ const ModalCard = ({ card, errorMessage, closeModalCard }: IModalCardProps): JSX
     );
   }
 
-  const closeModal = (): void => {
-    closeModalCard();
+  const closeModalCard = (): void => {
+    dispatch(closeModal());
   };
 
   return (
     <>
-      <div className={classes.modalCardWrapper} onClick={closeModal}></div>
-      {errorMessage && (
+      {isFetching && createPortal(<Preloader />, document.body)}
+      <div className={classes.modalCardWrapper} onClick={closeModalCard}></div>
+      {isError && (
         <div className={classes.errorMessageCard}>
-          <div className={classes.closeModalButton} onClick={closeModal}>
+          <div className={classes.closeModalButton} onClick={closeModalCard}>
             <span className={classes.closeLine}></span>
             <span className={classes.closeLine}></span>
           </div>
-          <AlertErrorMessage message={errorMessage as string} />
+          <AlertErrorMessage message={ApiErrorMessage.unknownError} />
         </div>
       )}
-      {card && (
+      {!isFetching && card && (
         <div className={classes.modalContainer}>
-          <div className={classes.closeModalButton} onClick={closeModal}>
+          <div className={classes.closeModalButton} onClick={closeModalCard}>
             <span className={classes.closeLine}></span>
             <span className={classes.closeLine}></span>
           </div>

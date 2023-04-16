@@ -1,8 +1,11 @@
 import Movies from './Movies';
-import { render, screen, waitFor } from '@testing-library/react';
-import { Url } from '../../Api/Api';
-import { rest } from 'msw';
-import { setupServer } from 'msw/node';
+import { render, screen } from '@testing-library/react';
+import { useGetMoviesQuery } from '../../redux/services/MoviesService';
+import { vitest, Mock } from 'vitest';
+import { useAppSelector } from '../../hooks/redux';
+
+vitest.mock('../../redux/services/MoviesService');
+vitest.mock('../../hooks/redux');
 
 const movies = {
   docs: [
@@ -17,22 +20,19 @@ const movies = {
   pages: 27396,
 };
 
-const server = setupServer(
-  rest.get(Url.allMovies, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(movies));
-  })
-);
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
-
 describe('Movies', () => {
   it('should send fetch and render card', async () => {
-    render(<Movies />);
-    await waitFor(() => {
-      expect(screen.getByText('1+1')).toBeInTheDocument();
-      expect(screen.getByText('Год выпуска: 2011')).toBeInTheDocument();
+    (useGetMoviesQuery as Mock).mockReturnValue({
+      data: movies,
     });
+
+    (useAppSelector as Mock).mockReturnValue({
+      searchText: '1',
+    });
+
+    render(<Movies />);
+
+    expect(screen.getByText(movies.docs[0].name)).toBeInTheDocument();
+    expect(screen.getByText(`Год выпуска: ${movies.docs[0].year}`)).toBeInTheDocument();
   });
 });

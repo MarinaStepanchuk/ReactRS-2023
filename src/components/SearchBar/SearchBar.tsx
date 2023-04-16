@@ -1,11 +1,11 @@
 import classes from './SearchBar.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { moviesSlice } from '../../store/reducers/moviesSlice';
+import { searchTextSlice } from '../../redux/store/reducers/SearchTextSlice/searchTextSlice';
 import { useForm } from 'react-hook-form';
 
 const SearchBar = (): JSX.Element => {
-  const { searchText } = useAppSelector((state) => state.moviesReducer);
-  const { saveText } = moviesSlice.actions;
+  const { searchText } = useAppSelector((state) => state.searchReducer);
+  const { saveText } = searchTextSlice.actions;
   const dispatch = useAppDispatch();
 
   const { register, handleSubmit } = useForm({
@@ -18,7 +18,6 @@ const SearchBar = (): JSX.Element => {
 
   const onSubmitForm = (data: { text: string }): void => {
     dispatch(saveText(data.text));
-    console.log(searchText);
   };
 
   return (
