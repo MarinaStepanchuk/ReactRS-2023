@@ -21,7 +21,6 @@ export default defineConfig({
       reporter: ['text'],
       all: true,
       include: ['src'],
-      exclude: ['src/types', 'src/vite-env.d.ts'],
     },
   },
 });
