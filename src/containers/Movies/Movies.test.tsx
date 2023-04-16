@@ -10,6 +10,7 @@ vitest.mock('../../hooks/redux');
 const movies = {
   docs: [
     {
+      id: '13420',
       name: '1+1',
       year: 2011,
     },
