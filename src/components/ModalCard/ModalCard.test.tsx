@@ -1,6 +1,5 @@
 import ModalCard from './ModalCard';
 import { render, screen } from '@testing-library/react';
-import movieMock from '../../mocks/movieMock';
 import { useGetMovieByIdQuery } from '../../redux/services/MoviesService';
 import { useAppSelector } from '../../hooks/redux';
 import { vitest, Mock } from 'vitest';
