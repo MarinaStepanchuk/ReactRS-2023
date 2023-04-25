@@ -4,7 +4,7 @@ import notFoundImg from '../../assets/image-not-found.jpg';
 import ModalCard from '../../components/ModalCard/ModalCard';
 import { createPortal } from 'react-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { modalSlice } from '../../redux/store/reducers/ModalSlice/modalSlice';
+import { showModal } from '../../redux/store/reducers/ModalSlice/modalSlice';
 import classes from './ItemMovie.module.scss';
 
 interface IItemMoviesProps {
@@ -14,7 +14,6 @@ interface IItemMoviesProps {
 
 const ItemMovie = ({ movie }: IItemMoviesProps): JSX.Element | null => {
   const { idCard } = useAppSelector((state) => state.modalReducer);
-  const { showModal } = modalSlice.actions;
   const dispatch = useAppDispatch();
 
   const { id, name, poster, year, countries = [], rating } = movie;
@@ -24,7 +23,9 @@ const ItemMovie = ({ movie }: IItemMoviesProps): JSX.Element | null => {
   const showModalWindow = (e: React.MouseEvent<HTMLDivElement>): void => {
     const targetElement = e.target as HTMLElement;
 
-    if (!targetElement.closest(`.${classes.item}`)) return;
+    if (!targetElement.closest(`.${classes.item}`)) {
+      return;
+    }
 
     dispatch(showModal(String(id)));
   };

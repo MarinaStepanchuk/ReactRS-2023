@@ -1,15 +1,13 @@
 import Form from './Form';
 import { render, screen } from '@testing-library/react';
-import { vitest, Mock } from 'vitest';
+import { vitest } from 'vitest';
 import { InputName } from '../../constants/common.constants';
-import { useAppDispatch } from '../../hooks/redux';
 
-vitest.mock('../../hooks/redux');
+vitest.mock('../../hooks/redux', () => ({
+  useAppDispatch: vitest.fn(),
+}));
 
 describe('Form', () => {
-  const mockDispatch = vitest.fn();
-  (useAppDispatch as Mock).mockReturnValue(mockDispatch);
-
   beforeEach(() => {
     render(<Form />);
   });

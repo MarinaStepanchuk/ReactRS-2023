@@ -8,7 +8,7 @@ import {
   StarIcon,
 } from '../../constants/common.constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { modalSlice } from '../../redux/store/reducers/ModalSlice/modalSlice';
+import { closeModal } from '../../redux/store/reducers/ModalSlice/modalSlice';
 import { useGetMovieByIdQuery } from '../../redux/services/MoviesService';
 import Preloader from '../../components/icons/Preloader/Preloader';
 import { createPortal } from 'react-dom';
@@ -16,7 +16,6 @@ import classes from './ModalCard.module.scss';
 
 const ModalCard = (): JSX.Element => {
   const { idCard } = useAppSelector((state) => state.modalReducer);
-  const { closeModal } = modalSlice.actions;
   const dispatch = useAppDispatch();
 
   const { data: card, isFetching, isError } = useGetMovieByIdQuery(idCard);

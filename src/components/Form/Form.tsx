@@ -8,7 +8,7 @@ import {
 } from '../../constants/common.constants';
 import FormItemWrapper from '../FormItemWrapper/FormItemWrapper';
 import { useForm } from 'react-hook-form';
-import { critiquesSlice } from '../../redux/store/reducers/CritiquesSlice/critiquesSlice';
+import { sendCard, showMessage } from '../../redux/store/reducers/CritiquesSlice/critiquesSlice';
 import { useAppDispatch } from '../../hooks/redux';
 import classes from './Form.module.scss';
 
@@ -44,7 +44,6 @@ const Form = (): JSX.Element => {
     reValidateMode: 'onSubmit',
   });
 
-  const { showMessage, sendCard } = critiquesSlice.actions;
   const dispatch = useAppDispatch();
 
   const onSubmitForm = (data: IFormData) => {

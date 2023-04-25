@@ -25,4 +25,7 @@ export const critiquesSlice = createSlice({
   },
 });
 
+const { showMessage, sendCard } = critiquesSlice.actions;
+
 export default critiquesSlice.reducer;
+export { showMessage, sendCard };
