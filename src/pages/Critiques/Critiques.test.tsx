@@ -1,4 +1,4 @@
-import Main from './Main';
+import Critiques from './Critiques';
 import { render, screen } from '@testing-library/react';
 import { Content } from '../../constants/common.constants';
 import { Provider } from 'react-redux';
@@ -10,10 +10,10 @@ describe('Main', () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <Main />
+          <Critiques />
         </BrowserRouter>
       </Provider>
     );
-    expect(screen.getByText(Content.greeting)).toBeTruthy();
+    expect(screen.getByText(Content.critiquesTitle)).toBeTruthy();
   });
 });

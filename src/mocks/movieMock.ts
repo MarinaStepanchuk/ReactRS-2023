@@ -8,7 +8,7 @@ const movieMock = {
   movieLength: null,
   type: null,
   description: null,
-  year: null,
+  year: 2014,
   genres: null,
   countries: null,
   alternativeName: null,

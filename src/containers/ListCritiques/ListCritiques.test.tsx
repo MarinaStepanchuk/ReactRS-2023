@@ -1,34 +1,31 @@
+import { Mock, vitest } from 'vitest';
 import ListCritiques from './ListCritiques';
+import { useAppSelector } from '../../hooks/redux';
 import { render, screen } from '@testing-library/react';
+import movieMock from '../../mocks/movieMock';
+
+vitest.mock('../../hooks/redux');
 
 describe('ListCritiques', () => {
-  const critiques = [
-    {
-      name: 'Marina Stepanchuk',
-      country: 'USA',
-      photo: './../photo',
-      date: '3-11-2021',
-      movie: 'The Banshees of Inisherin',
-      review: 'Is a good movie',
-      recommended: true,
-      unrecommended: false,
-      personal: true,
-    },
-    {
-      name: 'Olga Dark',
-      country: 'Belgium',
-      photo: './../profile',
-      date: '3-10-2022',
-      movie: 'Avatar',
-      review: 'Like this movie',
-      recommended: true,
-      unrecommended: false,
-      personal: true,
-    },
-  ];
+  it('should render correct', () => {
+    (useAppSelector as Mock).mockReturnValue({
+      cards: [movieMock],
+      showSendMessage: false,
+    });
+
+    render(<ListCritiques />);
+
+    expect(screen.getAllByTestId('itemCritique').length).toBe(1);
+  });
 
   it('should render correct', () => {
-    render(<ListCritiques critiques={critiques} />);
-    expect(screen.getAllByTestId('itemCritique').length).toBe(2);
+    (useAppSelector as Mock).mockReturnValue({
+      cards: [],
+      showSendMessage: false,
+    });
+
+    render(<ListCritiques />);
+
+    expect(screen.queryByTestId('itemCritique')).not.toBeInTheDocument();
   });
 });

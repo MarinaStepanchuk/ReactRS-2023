@@ -3,11 +3,13 @@ import { render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 import { InputName } from '../../constants/common.constants';
 
-describe('Form', () => {
-  const onSubmit = vitest.fn();
+vitest.mock('../../hooks/redux', () => ({
+  useAppDispatch: vitest.fn(),
+}));
 
+describe('Form', () => {
   beforeEach(() => {
-    render(<Form onSubmit={onSubmit} />);
+    render(<Form />);
   });
 
   it('should render correct', () => {

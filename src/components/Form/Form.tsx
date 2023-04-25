@@ -7,13 +7,10 @@ import {
   ErrorMessages,
 } from '../../constants/common.constants';
 import FormItemWrapper from '../FormItemWrapper/FormItemWrapper';
-import { ICritique } from '../../types/interfaces';
 import { useForm } from 'react-hook-form';
+import { sendCard, showMessage } from '../../redux/store/reducers/CritiquesSlice/critiquesSlice';
+import { useAppDispatch } from '../../hooks/redux';
 import classes from './Form.module.scss';
-
-interface IFormProps {
-  onSubmit: (card: ICritique) => void;
-}
 
 interface IFormData {
   name: string;
@@ -26,7 +23,7 @@ interface IFormData {
   personal: boolean;
 }
 
-const Form = (props: IFormProps): JSX.Element => {
+const Form = (): JSX.Element => {
   const {
     register,
     handleSubmit,
@@ -47,6 +44,8 @@ const Form = (props: IFormProps): JSX.Element => {
     reValidateMode: 'onSubmit',
   });
 
+  const dispatch = useAppDispatch();
+
   const onSubmitForm = (data: IFormData) => {
     const { name, country, photo, date, movie, review, recommended, personal } = data;
 
@@ -61,8 +60,11 @@ const Form = (props: IFormProps): JSX.Element => {
       personal: personal,
     };
 
-    props.onSubmit(card);
-    reset();
+    dispatch(showMessage());
+    setTimeout(() => {
+      dispatch(sendCard(card));
+      reset();
+    }, 1000);
   };
 
   return (

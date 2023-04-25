@@ -1,15 +1,23 @@
 import SearchBar from './SearchBar';
 import { render, screen } from '@testing-library/react';
-import { vitest } from 'vitest';
+import { vitest, Mock } from 'vitest';
 import userEvent from '@testing-library/user-event';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux';
+
+vitest.mock('../../hooks/redux');
 
 describe('SearchBar', () => {
-  const onTextChange = vitest.fn();
+  (useAppSelector as Mock).mockReturnValue({
+    searchText: '',
+  });
+
+  const mockDispatch = vitest.fn();
+  (useAppDispatch as Mock).mockReturnValue(mockDispatch);
 
   it('should call function test', async () => {
     const user = userEvent.setup();
-    render(<SearchBar onTextChange={onTextChange} />);
+    render(<SearchBar />);
     await user.type(screen.getByRole('textbox'), '123{enter}');
-    expect(onTextChange).toHaveBeenCalled();
+    expect(mockDispatch).toHaveBeenCalled();
   });
 });
