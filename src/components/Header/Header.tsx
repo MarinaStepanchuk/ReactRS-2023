@@ -1,11 +1,31 @@
 import { Pages, Paths } from '../../constants/common.constants';
 import { NavLink } from 'react-router-dom';
-import getRouteTitle from '../../utils/getRouteTitle';
-import classes from './Header.module.scss';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import classes from './Header.module.scss';
 
 const Header = (): JSX.Element => {
-  const [title, setTitle] = useState<string>(getRouteTitle());
+  const page = useLocation().pathname;
+  const foundTitle = (page: string) => {
+    let titlePage;
+    switch (page) {
+      case Paths.main.path:
+        titlePage = Paths.main.title;
+        break;
+      case Paths.about.path:
+        titlePage = Paths.about.title;
+        break;
+      case Paths.critiques.path:
+        titlePage = Paths.critiques.title;
+        break;
+      default:
+        titlePage = Paths.main.title;
+    }
+
+    return titlePage;
+  };
+
+  const [title, setTitle] = useState<string>(foundTitle(page));
 
   const changeTitle = (page: string) => () => setTitle(page);
 

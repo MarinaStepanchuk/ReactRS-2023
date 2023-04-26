@@ -6,6 +6,7 @@ import Error from '../pages/Error/Error';
 import Header from '../components/Header/Header';
 import Critiques from '../pages/Critiques/Critiques';
 import { Paths } from '../constants/common.constants';
+import '../index.css';
 
 const App = (): JSX.Element => (
   <>
