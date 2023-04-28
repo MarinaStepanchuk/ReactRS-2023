@@ -22,7 +22,7 @@ const SearchBar = (): JSX.Element => {
 
   return (
     <form className={classes.searchBar} onSubmit={handleSubmit(onSubmitForm)}>
-      <input {...register('text')} className={classes.search} type="text" />
+      <input {...register('text')} className={classes.search} type="text" data-cy="input-main" />
     </form>
   );
 };

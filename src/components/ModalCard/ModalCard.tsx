@@ -30,7 +30,7 @@ const ModalCard = (): JSX.Element => {
     const genresArray = genres ? genres : [];
 
     modal = (
-      <div className={classes.modal}>
+      <div className={classes.modal} data-cy="modal-movie">
         <p className={classes.title}>{name}</p>
         <div className={classes.detailContainer}>
           <img className={classes.poster} src={poster?.url || notFoundImg}></img>
@@ -75,9 +75,13 @@ const ModalCard = (): JSX.Element => {
   return (
     <>
       {isFetching && createPortal(<Preloader />, document.body)}
-      <div className={classes.modalCardWrapper} onClick={closeModalCard}></div>
+      <div
+        className={classes.modalCardWrapper}
+        onClick={closeModalCard}
+        data-cy="modal-wrapper"
+      ></div>
       {isError && (
-        <div className={classes.errorMessageCard}>
+        <div className={classes.errorMessageCard} data-cy="modal-close-button">
           <div className={classes.closeModalButton} onClick={closeModalCard}>
             <span className={classes.closeLine}></span>
             <span className={classes.closeLine}></span>
@@ -87,7 +91,11 @@ const ModalCard = (): JSX.Element => {
       )}
       {!isFetching && card && (
         <div className={classes.modalContainer}>
-          <div className={classes.closeModalButton} onClick={closeModalCard}>
+          <div
+            className={classes.closeModalButton}
+            onClick={closeModalCard}
+            data-cy="modal-close-button"
+          >
             <span className={classes.closeLine}></span>
             <span className={classes.closeLine}></span>
           </div>

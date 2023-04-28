@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Main page', () => {
+describe('About page', () => {
   it('should the about page title', () => {
     cy.visit('/about');
 
