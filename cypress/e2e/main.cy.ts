@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 beforeEach(() => {
   cy.visit('/');
 });
@@ -7,15 +9,15 @@ describe('Main page', () => {
     cy.get('[data-cy="preloader"]').should('be.visible');
   });
 
-  it('should the main page title', () => {
+  it('should correct render the main page title', () => {
     cy.get('h1').should('have.text', 'Главная');
   });
 
-  it('should the main page description', () => {
+  it('should correct render the main page description', () => {
     cy.get('[class*=greeting]').should('includes.text', 'Введите фильм, который вы ищете');
   });
 
-  it('should the navigation list', () => {
+  it('should correct work the navigation list', () => {
     cy.get('nav > ul > li > a').first().should('have.text', 'Главная');
     cy.get('nav > ul > li > a').last().should('have.text', 'Рецензии');
   });

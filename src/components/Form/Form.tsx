@@ -214,7 +214,12 @@ const Form = (): JSX.Element => {
           id={InputName.personalDate}
         />
       </FormItemWrapper>
-      <input className={classes.submit} type="submit" value={Content.formSubmit}></input>
+      <input
+        className={classes.submit}
+        type="submit"
+        value={Content.formSubmit}
+        data-cy="submit-button"
+      ></input>
     </form>
   );
 };

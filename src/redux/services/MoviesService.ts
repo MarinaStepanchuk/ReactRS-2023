@@ -5,7 +5,7 @@ const Headers = {
   key: 'X-API-KEY',
 };
 
-const ApiKey = 'Z3153R0-XX2MS42-P2WPK4R-GXEGX3S';
+const ApiKey = '76HP0HF-JE0MXDF-G52ZG6R-M0VGAA7';
 
 const baseUrl = 'https://api.kinopoisk.dev/v1/movie';
 

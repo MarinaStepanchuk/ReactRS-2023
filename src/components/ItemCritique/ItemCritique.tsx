@@ -22,7 +22,7 @@ const ItemCritique = ({
     <div className={classes.critique}>
       <div className={classes.critiqueItem}>
         <span>{Content.critique.cardMovie}</span>
-        <span>{movie}</span>
+        <span data-cy="critique-movie">{movie}</span>
       </div>
       <div className={classes.critiqueItem}>
         <span>{Content.critique.cardDate}</span>
