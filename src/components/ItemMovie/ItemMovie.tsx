@@ -32,7 +32,7 @@ const ItemMovie = ({ movie }: IItemMoviesProps): JSX.Element | null => {
 
   return (
     <>
-      <div className={classes.item} onClick={showModalWindow} id={`${id}`}>
+      <div className={classes.item} onClick={showModalWindow} id={`${id}`} data-cy="movie-card">
         {idCard === String(id) && createPortal(<ModalCard />, document.body)}
         <img src={poster?.url || notFoundImg}></img>
         <div className={classes.description}>
